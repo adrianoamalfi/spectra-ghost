@@ -4,8 +4,13 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-10-09
+
 ### Added
 - Selectable Essay and Note post templates for long-form and short-form publishing, with documented visual examples.
+
+### Changed
+- Bumped `actions/checkout` to 7.0.1, `actions/setup-node` to 7.0.0 and `actions/upload-artifact` to 7.0.1 in the CI and Release workflows.
 
 ## [0.3.0] - 2026-10-09
 
