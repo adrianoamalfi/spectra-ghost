@@ -1,0 +1,52 @@
+name: Bug report
+description: Report a reproducible issue with the Spectra theme
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please avoid including private member data, credentials, or other sensitive information.
+        For security vulnerabilities, follow [SECURITY.md](https://github.com/adrianoamalfi/spectra-ghost/blob/main/SECURITY.md) instead.
+  - type: input
+    id: ghost-version
+    attributes:
+      label: Ghost version
+      placeholder: "6.x"
+    validations:
+      required: true
+  - type: input
+    id: theme-version
+    attributes:
+      label: Spectra version
+      placeholder: "0.2.0"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the relevant theme settings and a public URL if available.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Screenshots or additional context

@@ -79,5 +79,8 @@
     "No posts": "Keine Beiträge",
     "1 post": "1 Beitrag",
     "% posts": "% Beiträge",
-    "Comments": "Kommentare"
+    "Comments": "Kommentare",
+    "Could not load more posts. Use the pagination links to continue.": "Weitere Beiträge konnten nicht geladen werden. Nutze die Seitennavigation, um fortzufahren.",
+    "Copied to clipboard.": "In die Zwischenablage kopiert.",
+    "Could not copy. Please try again.": "Kopieren fehlgeschlagen. Bitte versuche es erneut."
 }

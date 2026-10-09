@@ -41,7 +41,7 @@
         var state = { hero: 'featured', cover: 'cover', scheme: 'light' };
         var dark = document.querySelector('input[name="scheme"][value="dark"]');
         var notes = {
-            featured: 'Your identity next to the featured post (the latest post if none is featured), then the three latest posts as a ruled list.',
+            featured: 'Your identity next to the featured post (the latest post if none is featured). With the slider off, the hero shows the latest posts as a ruled list; with it on, other featured posts appear in the slider when available.',
             masthead: 'The site name across the full width, a hairline, then description and subscribe.',
             statement: 'The site description is the headline, with your top topics as links. With a cover the tile splits in two.',
             index: 'Your topics and their real post counts are the hero.'

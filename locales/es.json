@@ -79,5 +79,8 @@
     "No posts": "Sin publicaciones",
     "1 post": "1 publicación",
     "% posts": "% publicaciones",
-    "Comments": "Comentarios"
+    "Comments": "Comentarios",
+    "Could not load more posts. Use the pagination links to continue.": "No se pudieron cargar más publicaciones. Usa los enlaces de paginación para continuar.",
+    "Copied to clipboard.": "Copiado al portapapeles.",
+    "Could not copy. Please try again.": "No se pudo copiar. Inténtalo de nuevo."
 }

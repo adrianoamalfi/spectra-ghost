@@ -4,12 +4,26 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-10-09
+
 ### Added
-- Documentation site (GitHub Pages) in `docs/`, with 33 screenshots and an accent picker that recolours the page with the theme's own colour model.
-- `scripts/screenshots.mjs` (screenshots through Chrome's DevTools protocol) and `scripts/docs-settings.mjs` (settings tables generated from `package.json`); CI checks that the generated tables are current.
+- GitHub Pages documentation with 36 screenshots, an interactive accent picker, and a current-release download link.
+- Scripts to capture documentation screenshots and generate settings tables from `package.json`; CI checks that the generated documentation is current.
+- A GitHub Release workflow that validates tagged versions and publishes the installable theme ZIP.
+- Dependabot updates for npm and GitHub Actions, plus pull request and issue templates for contributors.
+- A repository ruleset that protects the default branch with required pull requests and CI checks.
+- Membership pricing displays monthly and annual plans when available, with billing-specific accessible action names.
+- Accessible success and error feedback for clipboard copying and infinite-scroll loading.
+
+### Changed
+- The homepage featured hero, featured slider, feed, and pagination avoid showing the same post twice.
+- Dark-mode header logos are rendered monochrome white for contrast.
+- Lazy-loaded card images include intrinsic dimensions and asynchronous decoding.
+- `npm run zip` creates the theme archive with Node.js instead of relying on a system `zip` command.
+- CI uses least-privilege permissions and immutable action references, cancels superseded runs, and validates the installable theme ZIP.
 
 ### Security
-- Pin `handlebars` to 4.7.10 through npm `overrides` (development dependency of `gscan`).
+- Pin the development dependency `handlebars` to 4.7.10 through npm `overrides`.
 
 ## [0.2.0] - 2026-10-09
 

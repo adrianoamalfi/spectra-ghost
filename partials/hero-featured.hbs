@@ -11,11 +11,11 @@
                 {{> hero-cta}}
             </div>
         </div>
-        {{#get "posts" filter="featured:true" limit="1"}}
-            {{#foreach posts}}{{> hero-featured-card}}{{/foreach}}
+        {{#get "posts" filter="featured:true" limit="1" as |featured|}}
+            {{#foreach featured}}{{> hero-featured-card}}{{/foreach}}
         {{else}}
-            {{#get "posts" limit="1"}}
-                {{#foreach posts}}{{> hero-featured-card}}{{/foreach}}
+            {{#get "posts" limit="1" as |latest|}}
+                {{#foreach latest}}{{> hero-featured-card}}{{/foreach}}
             {{/get}}
         {{/get}}
     </div>

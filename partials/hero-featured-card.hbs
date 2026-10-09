@@ -7,17 +7,19 @@
         <h2 class="hf-feat-title"><a href="{{url}}">{{title}}</a></h2>
     </div>
 </article>
-{{#get "posts" filter="id:-{{id}}" limit="3"}}
-    {{#if posts}}
-        <nav class="hf-list" aria-label="{{t "Latest posts"}}">
-            {{#foreach posts}}
-                <a href="{{url}}">
-                    <time datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="D MMM YYYY"}}</time>
-                    <i aria-hidden="true"></i>
-                    <span>{{title}}</span>
-                    <b aria-hidden="true">&rarr;</b>
-                </a>
-            {{/foreach}}
-        </nav>
-    {{/if}}
-{{/get}}
+{{#unless @custom.show_featured_slider}}
+    {{#get "posts" filter="id:-{{id}}" limit="3"}}
+        {{#if posts}}
+            <nav class="hf-list" aria-label="{{t "Latest posts"}}">
+                {{#foreach posts}}
+                    <a href="{{url}}">
+                        <time datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="D MMM YYYY"}}</time>
+                        <i aria-hidden="true"></i>
+                        <span>{{title}}</span>
+                        <b aria-hidden="true">&rarr;</b>
+                    </a>
+                {{/foreach}}
+            </nav>
+        {{/if}}
+    {{/get}}
+{{/unless}}

@@ -4,7 +4,7 @@
         <span class="meta-authors">
             {{#foreach authors}}
                 {{#if ../card}}
-                    <span class="meta-author">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="avatar" src="{{img_url profile_image size="xs"}}" alt="" width="24" height="24" loading="lazy">{{/if}}{{/match}}<span>{{name}}</span></span>
+                    <span class="meta-author">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="avatar" src="{{img_url profile_image size="xs"}}" alt="" width="24" height="24" loading="lazy" decoding="async">{{/if}}{{/match}}<span>{{name}}</span></span>
                 {{else}}
                     <a class="meta-author" href="{{url}}">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="avatar" src="{{img_url profile_image size="xs"}}" alt="" width="40" height="40">{{/if}}{{/match}}<span>{{name}}</span></a>
                 {{/if}}

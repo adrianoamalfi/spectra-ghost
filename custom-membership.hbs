@@ -19,17 +19,21 @@
                 <div class="tile tier">
                     <h2 class="tier-name">{{name}}</h2>
                     {{#if description}}<p class="tier-description">{{description}}</p>{{/if}}
-                    {{#if monthly_price}}
-                        <p class="tier-price"><span class="tier-amount">{{price monthly_price currency=currency}}</span> <span class="tier-period">/ {{t "month"}}</span></p>
-                    {{else}}
-                        {{#if yearly_price}}<p class="tier-price"><span class="tier-amount">{{price yearly_price currency=currency}}</span> <span class="tier-period">/ {{t "year"}}</span></p>{{/if}}
-                    {{/if}}
                     {{#if benefits}}<ul class="tier-benefits">{{#foreach benefits}}<li>{{> "icons/check"}}<span>{{this}}</span></li>{{/foreach}}</ul>{{/if}}
-                    {{#if monthly_price}}
-                        <a class="button" href="#/portal/signup/{{id}}/monthly" data-portal="signup/{{id}}/monthly">{{t "Choose this plan"}}</a>
-                    {{else}}
-                        <a class="button" href="#/portal/signup/{{id}}/yearly" data-portal="signup/{{id}}/yearly">{{t "Choose this plan"}}</a>
-                    {{/if}}
+                    <div class="tier-options">
+                        {{#if monthly_price}}
+                            <div class="tier-option">
+                                <p class="tier-price"><span class="tier-amount">{{price monthly_price currency=currency}}</span> <span class="tier-period">/ {{t "month"}}</span></p>
+                                <a class="button" href="#/portal/signup/{{id}}/monthly" data-portal="signup/{{id}}/monthly" aria-label="{{t "Choose this plan"}}: {{name}}, {{t "month"}}">{{t "Choose this plan"}}</a>
+                            </div>
+                        {{/if}}
+                        {{#if yearly_price}}
+                            <div class="tier-option">
+                                <p class="tier-price"><span class="tier-amount">{{price yearly_price currency=currency}}</span> <span class="tier-period">/ {{t "year"}}</span></p>
+                                <a class="button" href="#/portal/signup/{{id}}/yearly" data-portal="signup/{{id}}/yearly" aria-label="{{t "Choose this plan"}}: {{name}}, {{t "year"}}">{{t "Choose this plan"}}</a>
+                            </div>
+                        {{/if}}
+                    </div>
                 </div>
             {{/foreach}}
         </section>
