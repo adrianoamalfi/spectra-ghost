@@ -21,6 +21,10 @@ Theme page: [adrianoamalfi.com/spectra](https://adrianoamalfi.com/spectra/) · D
 | --- | --- | --- |
 | ![Article in the dark scheme](docs/screenshots/post-dark.webp) | ![Phone menu](docs/screenshots/mobile-menu.webp) | ![Signoff footer](docs/screenshots/footer-signoff.webp) |
 
+| Essay | Note |
+| --- | --- |
+| ![Essay post template](docs/screenshots/post-essay.webp) | ![Note post template](docs/screenshots/post-note.webp) |
+
 ## Highlights
 
 - **One colour in, a whole palette out.** Every surface, ink and tint is generated in OKLCH from the accent you set in Ghost Admin, for light and dark. Contrast stays at WCAG AA for any accent (see [DESIGN.md](DESIGN.md)).
@@ -28,6 +32,7 @@ Theme page: [adrianoamalfi.com/spectra](https://adrianoamalfi.com/spectra/) · D
 - **Two footers**: **Colophon** (quiet columns) and **Signoff** (a closing tile with the subscribe call).
 - **Bento feed** with tiles that adapt to their own width (container queries and a variable display font), plus Grid and List layouts, infinite scroll and an optional featured slider.
 - **A calm reading experience**: table of contents with scroll-spy, share row, previous and next post, breadcrumbs with structured data, reading progress, heading anchors, code copy buttons, an image lightbox and lazy-loaded comments.
+- **Two post formats**, selected per post in Ghost: **Essay** gives long-form work a broad editorial opening and optional contents; **Note** keeps short writing close to the reading column.
 - **Colour scheme switch** (system, light, dark) in the header, applied before first paint so there is no flash.
 - **Membership ready**: subscribe section, a call to action for gated posts, a membership page with your tiers, a newsletter archive, donations button and Ghost recommendations.
 - **Page templates**: Landing, Archive, Membership, Newsletter.
@@ -117,6 +122,7 @@ Pick them in the page settings (Template). Each page keeps its title and content
 
 ## Posts
 
+- Choose **Essay** or **Note** in a post's settings under **Template**. Essay gives long reads a broad title, full-width feature image and the optional table of contents; Note keeps the title, image and text in a compact reading column without a contents rail.
 - **Table of contents** appears on the left of long posts (two or more headings). On small screens it is a collapsed disclosure.
 - **Gated posts** show a single call to action in place of Ghost's default one, worded for free or paid access.
 - **Related posts** come from the primary tag, falling back to the latest posts.
@@ -173,7 +179,7 @@ Changes to CSS and JavaScript show after a reload; changes to templates or to `p
 | `default.hbs` | Base layout: head, scheme script, header, footer, scripts |
 | `home.hbs`, `index.hbs` | Home (hero, featured slider, feed, subscribe) and the paginated list |
 | `post.hbs`, `page.hbs` | Post and page |
-| `custom-*.hbs` | Page templates: Landing, Archive, Membership, Newsletter |
+| `custom-*.hbs` | Page templates: Landing, Archive, Membership, Newsletter; post templates: Essay, Note |
 | `tag.hbs`, `author.hbs` | Archives |
 | `error.hbs`, `error-404.hbs` | Errors |
 | `partials/hero-*.hbs` | The four heroes and their shared pieces |

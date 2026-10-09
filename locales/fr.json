@@ -82,5 +82,7 @@
     "Comments": "Commentaires",
     "Could not load more posts. Use the pagination links to continue.": "Impossible de charger plus d’articles. Utilisez les liens de pagination pour continuer.",
     "Copied to clipboard.": "Copié dans le presse-papiers.",
-    "Could not copy. Please try again.": "Impossible de copier. Veuillez réessayer."
+    "Could not copy. Please try again.": "Impossible de copier. Veuillez réessayer.",
+    "Essay": "Essai",
+    "Note": "Note"
 }

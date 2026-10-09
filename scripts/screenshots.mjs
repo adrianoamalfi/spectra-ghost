@@ -55,6 +55,10 @@ const GROUPS = {
     masthead: [...hero('masthead'), { name: 'footer-signoff', path: '/', ...desktop, scheme: 'light', scroll: '.site-footer', clip: '.site-footer', pad: 32 }],
     statement: hero('statement'),
     index: hero('index'),
+    editorial: [
+        { name: 'post-essay', path: '/a-slower-rhythm-for-long-reads/', w: 1440, h: 1000, dpr: 1, scheme: 'light' },
+        { name: 'post-note', path: '/notes-from-a-quiet-morning/', w: 1440, h: 1000, dpr: 1, scheme: 'light' },
+    ],
     // same four heroes without a publication cover (run once per hero style)
     nocover: [{ name: 'home-HERO-nocover', path: '/', ...desktop, scheme: 'light' }],
     newsletter: [{ name: 'newsletter', path: '/newsletter/', w: 1440, h: 1000, dpr: 1, scheme: 'light' }],
