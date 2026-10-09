@@ -2,6 +2,15 @@
 
 All notable changes to this project are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Documentation site (GitHub Pages) in `docs/`, with 33 screenshots and an accent picker that recolours the page with the theme's own colour model.
+- `scripts/screenshots.mjs` (screenshots through Chrome's DevTools protocol) and `scripts/docs-settings.mjs` (settings tables generated from `package.json`); CI checks that the generated tables are current.
+
+### Security
+- Pin `handlebars` to 4.7.10 through npm `overrides` (development dependency of `gscan`).
+
 ## [0.2.0] - 2026-10-09
 
 First feature-complete release.

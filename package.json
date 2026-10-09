@@ -37,7 +37,9 @@
     "check:i18n": "node scripts/check-i18n.js",
     "check:a11y": "node scripts/check-a11y.js",
     "check": "npm test && npm run check:i18n && npm run check:a11y",
-    "zip": "rm -f spectra.zip && zip -r spectra.zip . -x '.*' -x 'node_modules/*' -x '*.zip' -x 'scripts/*' -x '*.md' -x 'LICENSE' -x 'package-lock.json' -x 'routes.example.yaml'"
+    "zip": "rm -f spectra.zip && zip -r spectra.zip . -x '.*' -x 'node_modules/*' -x '*.zip' -x 'scripts/*' -x 'docs/*' -x '*.md' -x 'LICENSE' -x 'package-lock.json' -x 'routes.example.yaml'",
+    "docs": "node scripts/docs-settings.mjs",
+    "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
     "gscan": "^6.6.1"
