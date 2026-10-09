@@ -42,6 +42,9 @@
   "devDependencies": {
     "gscan": "^6.6.1"
   },
+  "overrides": {
+    "handlebars": "^4.7.10"
+  },
   "config": {
     "posts_per_page": 12,
     "card_assets": true,
