@@ -661,6 +661,39 @@ a.meta-author:hover { text-decoration-color: currentColor; }
 .article-excerpt { margin-top: var(--space-4); max-width: 40rem; font-size: var(--text-lg); line-height: 1.4; opacity: 0.8; }
 .article-landing .gh-content { padding-top: 0; }
 
+.article--essay .article-header { padding-block: var(--space-5) var(--space-4); }
+.article--essay .essay-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+    gap: var(--space-4) var(--space-6);
+    padding-block: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+}
+.essay-heading { min-width: 0; }
+.essay-heading .eyebrow { margin-bottom: var(--space-3); }
+.article--essay .article-title { max-width: 22ch; font-size: clamp(2.75rem, 7.5cqi, 6rem); }
+.article--essay .article-excerpt { max-width: 48rem; }
+.article--essay .meta { justify-content: flex-end; }
+.essay-image { margin-block: var(--space-4) var(--space-5); }
+
+.article--note .article-header { padding-block: var(--space-5) var(--space-3); }
+.note-head { padding-bottom: var(--space-4); border-bottom: 1px solid var(--color-border); }
+.note-head .eyebrow { margin-bottom: var(--space-2); }
+.article--note .article-title { max-width: 24ch; font-size: clamp(2rem, 5cqi, 3.5rem); line-height: 1; }
+.article--note .article-excerpt { margin-top: var(--space-3); }
+.article--note .meta { margin-top: var(--space-4); }
+.article--note .note-image { margin-block: var(--space-3) var(--space-4); }
+.note-layout { padding-top: 0; }
+.note-layout .gh-content { padding-top: 0; }
+.note-layout .gh-content > h2:first-child,
+.note-layout .gh-content > h3:first-child { margin-top: 0; }
+
+@media (max-width: 48rem) {
+    .article--essay .essay-head { grid-template-columns: 1fr; gap: var(--space-3); }
+    .article--essay .meta { justify-content: flex-start; }
+}
+
 .article-image { margin-block: 0 var(--space-5); }
 .article-image img { width: 100%; border-radius: var(--radius-media); }
 .article-image figcaption { margin-top: var(--space-2); font-size: var(--text-sm); color: var(--color-muted); text-align: center; }
