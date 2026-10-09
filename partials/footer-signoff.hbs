@@ -1,0 +1,25 @@
+<footer class="site-footer site-footer--signoff">
+    <div class="tile sf-tile">
+        <div class="sf-lead-row">
+            <p class="sf-lead">{{#if @custom.footer_text}}{{@custom.footer_text}}{{else}}{{#if @site.description}}{{@site.description}}{{else}}{{@site.title}}{{/if}}{{/if}}</p>
+            <div class="sf-lead-actions">
+                {{> hero-cta}}
+                {{#if @site.donations_enabled}}<a class="button button-ghost" href="#/portal/support" data-portal="support">{{t "Support this site"}}</a>{{/if}}
+            </div>
+        </div>
+        <div class="sf-cols">
+            <nav class="sf-nav" aria-label="{{t "Footer"}}">
+                {{navigation type="secondary"}}
+            </nav>
+            <nav class="sf-social" aria-label="{{t "Follow"}}">
+                {{> footer-links}}
+            </nav>
+            <div class="sf-base">
+                <p>&copy; {{date format="YYYY"}} {{@site.title}}</p>
+                <p>{{t "Theme"}} <a href="https://adrianoamalfi.com/spectra/" target="_blank" rel="noopener">Spectra<span class="visually-hidden"> {{t "Opens in a new tab"}}</span></a></p>
+                <p><a href="https://ghost.org" target="_blank" rel="noopener">{{t "Published with Ghost"}}</a></p>
+            </div>
+        </div>
+        {{recommendations limit="4"}}
+    </div>
+</footer>

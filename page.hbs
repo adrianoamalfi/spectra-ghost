@@ -1,0 +1,39 @@
+{{!< default}}
+
+{{#post}}
+<article class="{{post_class}} article">
+
+    {{#match @page.show_title_and_feature_image}}
+    <header class="article-header container-narrow">
+        {{> breadcrumbs}}
+        <h1 class="article-title">{{title}}</h1>
+
+        {{#if custom_excerpt}}
+            <p class="article-excerpt">{{custom_excerpt}}</p>
+        {{/if}}
+    </header>
+
+    {{#if feature_image}}
+        <figure class="article-image container">
+            <img
+                srcset="{{img_url feature_image size="m"}} 640w,
+                        {{img_url feature_image size="l"}} 960w,
+                        {{img_url feature_image size="xl"}} 1280w"
+                sizes="(min-width: 72rem) 72rem, 100vw"
+                src="{{img_url feature_image size="l"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                width="{{feature_image_width}}" height="{{feature_image_height}}"
+                fetchpriority="high"
+            >
+            {{#if feature_image_caption}}
+                <figcaption>{{{feature_image_caption}}}</figcaption>
+            {{/if}}
+        </figure>
+    {{/if}}
+    {{/match}}
+
+    <div class="gh-content" data-table-label="{{t "Scrollable table"}}" data-copy="{{t "Copy"}}" data-copied="{{t "Copied"}}" data-anchor-label="{{t "Copy link to this section"}}" data-zoom-label="{{t "Zoom image"}}" data-close-label="{{t "Close"}}" data-prev-label="{{t "Previous"}}" data-next-label="{{t "Next"}}">
+        {{content}}
+    </div>
+</article>
+{{/post}}

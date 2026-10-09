@@ -1,0 +1,20 @@
+{{!-- Related posts by primary tag, falling back to the latest. Context: a post. --}}
+{{#if primary_tag}}
+{{#get "posts" filter="tags:[{{primary_tag.slug}}]+id:-{{id}}" include="tags,authors" limit="3" as |related|}}
+    {{#if related}}
+        <aside class="container section">
+            <header class="section-header"><h2 class="section-title">{{t "Keep reading"}}</h2></header>
+            <div class="feed feed--Grid">{{#foreach related}}{{> post-card}}{{/foreach}}</div>
+        </aside>
+    {{/if}}
+{{/get}}
+{{else}}
+{{#get "posts" filter="id:-{{id}}" include="tags,authors" limit="3" as |related|}}
+    {{#if related}}
+        <aside class="container section">
+            <header class="section-header"><h2 class="section-title">{{t "Keep reading"}}</h2></header>
+            <div class="feed feed--Grid">{{#foreach related}}{{> post-card}}{{/foreach}}</div>
+        </aside>
+    {{/if}}
+{{/get}}
+{{/if}}

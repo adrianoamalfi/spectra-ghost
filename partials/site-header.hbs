@@ -1,0 +1,43 @@
+<header class="site-header">
+    <div class="container site-header-inner">
+        <a class="site-brand" href="{{@site.url}}">
+            {{#if @site.logo}}
+                <img src="{{@site.logo}}" alt="{{@site.title}}" height="32">
+            {{else}}
+                {{@site.title}}
+            {{/if}}
+        </a>
+
+        <nav class="site-nav" id="site-nav" aria-label="{{t "Primary"}}">
+            {{navigation}}
+            <div class="nav-extras">
+                {{> scheme-switch}}
+                {{#if @site.members_enabled}}
+                    {{#if @member}}
+                        <a class="button button-small" href="#/portal/account" data-portal="account">{{t "Account"}}</a>
+                    {{else}}
+                        <a class="button button-small" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                    {{/if}}
+                {{/if}}
+            </div>
+        </nav>
+
+        <div class="site-actions">
+            {{> scheme-switch}}
+
+            <button class="icon-button" type="button" data-ghost-search aria-label="{{t "Search"}}">{{> "icons/search"}}</button>
+
+            {{#if @site.members_enabled}}
+                {{#if @member}}
+                    <a class="button button-small site-account" href="#/portal/account" data-portal="account">{{t "Account"}}</a>
+                {{else}}
+                    <a class="button button-small site-account" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a>
+                {{/if}}
+            {{/if}}
+
+            <button class="icon-button nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="{{t "Menu"}}">
+                <span class="nav-toggle-open">{{> "icons/menu"}}</span><span class="nav-toggle-close">{{> "icons/close"}}</span>
+            </button>
+        </div>
+    </div>
+</header>

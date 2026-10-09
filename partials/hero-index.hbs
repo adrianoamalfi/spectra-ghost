@@ -1,0 +1,23 @@
+<section class="hero hero--index">
+    <div class="container hi-grid">
+        <div class="tile hi-id{{#if @site.cover_image}} photo-ink{{/if}}">
+            {{#if @site.cover_image}}{{> hero-cover class="hero-bg"}}<div class="hero-scrim"></div>{{/if}}
+            <div>
+                {{#if @custom.hero_eyebrow}}<p class="hero-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+                <h1 class="hero-title hi-title">{{@site.title}}</h1>
+                {{#if @site.description}}<p class="hi-desc">{{@site.description}}</p>{{/if}}
+            </div>
+            <div class="hi-id-foot">{{> hero-cta}}</div>
+        </div>
+        {{#get "tags" limit="5" include="count.posts" order="count.posts desc"}}
+            <nav class="tile hi-index" aria-label="{{t "Topics"}}">
+                <p class="hero-label">{{t "Topics"}}</p>
+                <ul>
+                    {{#foreach tags}}
+                        {{#if count.posts}}<li><a href="{{url}}"><em>{{name}}</em><small>{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</small></a></li>{{/if}}
+                    {{/foreach}}
+                </ul>
+            </nav>
+        {{/get}}
+    </div>
+</section>

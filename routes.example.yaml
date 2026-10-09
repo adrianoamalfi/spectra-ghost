@@ -1,0 +1,17 @@
+# Optional. Upload from Ghost Admin > Settings > Labs > Routes if you want
+# a static home (home.hbs) with the blog living under /writing/.
+# Without it, Ghost serves posts at / using home.hbs (page 1) and index.hbs.
+
+routes:
+  /:
+    template: home
+    data: page.home   # create a page with slug "home" if you want to feed content to home.hbs
+
+collections:
+  /writing/:
+    permalink: /writing/{slug}/
+    template: index
+
+taxonomies:
+  tag: /topic/{slug}/
+  author: /author/{slug}/

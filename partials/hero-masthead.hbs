@@ -1,0 +1,13 @@
+<section class="hero hero--masthead">
+    <div class="container">
+        <div class="tile hm">
+            {{#if @custom.hero_eyebrow}}<p class="hero-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+            <h1 class="hero-title hm-title">{{@site.title}}</h1>
+            {{#if @site.cover_image}}<figure class="hm-cover">{{> hero-cover}}</figure>{{/if}}
+            <div class="hm-cols">
+                {{#if @site.description}}<p class="hm-desc">{{@site.description}}</p>{{/if}}
+                {{> hero-cta}}
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,15 @@
+{{!-- Older / newer post. Context: a post. Hidden by CSS when empty. --}}
+<nav class="post-nav container" aria-label="{{t "More posts"}}">
+    {{#prev_post}}
+        <a class="post-nav-link post-nav-link--prev" href="{{url}}" rel="prev">
+            <span class="post-nav-kicker">{{t "Previous post"}}</span>
+            <span class="post-nav-title">{{title}}</span>
+        </a>
+    {{/prev_post}}
+    {{#next_post}}
+        <a class="post-nav-link post-nav-link--next" href="{{url}}" rel="next">
+            <span class="post-nav-kicker">{{t "Next post"}}</span>
+            <span class="post-nav-title">{{title}}</span>
+        </a>
+    {{/next_post}}
+</nav>

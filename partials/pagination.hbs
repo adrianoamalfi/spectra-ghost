@@ -1,0 +1,17 @@
+{{#match pages ">" 1}}
+    <nav class="pagination" aria-label="{{t "Pagination"}}" data-loading-label="{{t "Loading..."}}">
+        {{#if prev}}
+            <a class="pagination-link" href="{{page_url prev}}" rel="prev">&larr; {{t "Newer"}}</a>
+        {{else}}
+            <span></span>
+        {{/if}}
+
+        <span class="pagination-status">{{t "Page {page} of {pages}" page=page pages=pages}}</span>
+
+        {{#if next}}
+            <a class="pagination-link" href="{{page_url next}}" rel="next">{{t "Older"}} &rarr;</a>
+        {{else}}
+            <span></span>
+        {{/if}}
+    </nav>
+{{/match}}

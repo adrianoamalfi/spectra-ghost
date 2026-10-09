@@ -1,0 +1,206 @@
+{
+  "name": "spectra",
+  "version": "0.2.0",
+  "description": "A modern, flexible and accessible Ghost theme for personal sites: four hero styles, two footers, a colour system generated from one accent, and a calm reading experience.",
+  "license": "MIT",
+  "homepage": "https://adrianoamalfi.com/spectra/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adrianoamalfi/spectra-ghost.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adrianoamalfi/spectra-ghost/issues"
+  },
+  "author": {
+    "name": "Adriano Amalfi",
+    "email": "adrianoamalfi@gmail.com",
+    "url": "https://adrianoamalfi.com"
+  },
+  "keywords": [
+    "ghost-theme",
+    "ghost",
+    "theme",
+    "personal",
+    "portfolio",
+    "blog",
+    "minimal",
+    "dark-mode",
+    "oklch",
+    "accessible"
+  ],
+  "engines": {
+    "ghost": ">=6.0.0",
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "gscan .",
+    "check:i18n": "node scripts/check-i18n.js",
+    "check:a11y": "node scripts/check-a11y.js",
+    "check": "npm test && npm run check:i18n && npm run check:a11y",
+    "zip": "rm -f spectra.zip && zip -r spectra.zip . -x '.*' -x 'node_modules/*' -x '*.zip' -x 'scripts/*' -x '*.md' -x 'LICENSE' -x 'package-lock.json' -x 'routes.example.yaml'"
+  },
+  "devDependencies": {
+    "gscan": "^6.6.1"
+  },
+  "config": {
+    "posts_per_page": 12,
+    "card_assets": true,
+    "image_sizes": {
+      "xs": {
+        "width": 160
+      },
+      "s": {
+        "width": 320
+      },
+      "m": {
+        "width": 640
+      },
+      "l": {
+        "width": 960
+      },
+      "xl": {
+        "width": 1280
+      },
+      "xxl": {
+        "width": 1920
+      }
+    },
+    "custom": {
+      "color_scheme": {
+        "type": "select",
+        "options": [
+          "Auto",
+          "Light",
+          "Dark"
+        ],
+        "default": "Auto",
+        "description": "Auto follows the visitor's system preference"
+      },
+      "header_style": {
+        "type": "select",
+        "options": [
+          "Inline",
+          "Stacked"
+        ],
+        "default": "Inline",
+        "description": "Inline: brand and menu on one row. Stacked: brand centered above the menu"
+      },
+      "footer_text": {
+        "type": "text",
+        "default": "",
+        "description": "Optional line shown in the footer. Falls back to the site description"
+      },
+      "footer_style": {
+        "type": "select",
+        "options": [
+          "Colophon",
+          "Signoff"
+        ],
+        "default": "Colophon",
+        "description": "Colophon: quiet, ruled columns. Signoff: closing tile with subscribe"
+      },
+      "show_hero": {
+        "type": "boolean",
+        "default": true,
+        "group": "homepage"
+      },
+      "hero_style": {
+        "type": "select",
+        "options": [
+          "Featured",
+          "Masthead",
+          "Statement",
+          "Index"
+        ],
+        "default": "Featured",
+        "group": "homepage",
+        "description": "Layout of the homepage hero"
+      },
+      "hero_eyebrow": {
+        "type": "text",
+        "default": "",
+        "group": "homepage",
+        "description": "Small line above the title, e.g. \"Hello, I'm\""
+      },
+      "post_feed_style": {
+        "type": "select",
+        "options": [
+          "Bento",
+          "Grid",
+          "List"
+        ],
+        "default": "Bento",
+        "group": "homepage",
+        "description": "Bento: mixed-size tiles. Grid: uniform tiles. List: one per row"
+      },
+      "show_featured_slider": {
+        "type": "boolean",
+        "default": false,
+        "group": "homepage",
+        "description": "Show the other featured posts as a swipeable row under the hero"
+      },
+      "personal_hero_headline": {
+        "type": "text",
+        "default": "",
+        "group": "homepage",
+        "description": "Statement hero: headline (defaults to the site description)"
+      },
+      "personal_hero_text": {
+        "type": "text",
+        "default": "",
+        "group": "homepage",
+        "description": "Statement hero: short line under the headline"
+      },
+      "cta_headline": {
+        "type": "text",
+        "default": "",
+        "group": "homepage",
+        "description": "Subscribe section: headline"
+      },
+      "cta_text": {
+        "type": "text",
+        "default": "",
+        "group": "homepage",
+        "description": "Subscribe section: supporting line"
+      },
+      "show_reading_time": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "show_author_meta": {
+        "type": "select",
+        "options": [
+          "Name and photo",
+          "Name only",
+          "Hidden"
+        ],
+        "default": "Name and photo",
+        "group": "post",
+        "description": "Author on posts and cards"
+      },
+      "show_toc": {
+        "type": "boolean",
+        "default": true,
+        "group": "post",
+        "description": "Table of contents on long posts"
+      },
+      "show_reading_progress": {
+        "type": "boolean",
+        "default": true,
+        "group": "post",
+        "description": "Reading progress bar at the top of posts"
+      },
+      "show_related_posts": {
+        "type": "boolean",
+        "default": true,
+        "group": "post"
+      },
+      "secondary_accent": {
+        "type": "color",
+        "default": "#f5b301",
+        "description": "Text selection and link underline highlights"
+      }
+    }
+  }
+}

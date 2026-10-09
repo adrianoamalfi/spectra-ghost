@@ -1,0 +1,17 @@
+{{#if @site.members_enabled}}
+{{#unless @member}}
+<section class="container subscribe-wrap">
+    <div class="tile subscribe">
+        <h2 class="subscribe-title">{{#if @custom.cta_headline}}{{@custom.cta_headline}}{{else}}{{t "Get the best posts, straight to your inbox"}}{{/if}}</h2>
+        <p class="subscribe-text">{{#if @custom.cta_text}}{{@custom.cta_text}}{{else}}{{t "No spam. Unsubscribe at any time."}}{{/if}}</p>
+        <form class="members-form" data-members-form="subscribe">
+            <label class="visually-hidden" for="subscribe-email">{{t "Your email address"}}</label>
+            <input id="subscribe-email" type="email" name="email" data-members-email required autocomplete="email" inputmode="email" placeholder="{{t "Your email address"}}" aria-describedby="members-success members-error">
+            <button class="button" type="submit"><span class="form-cta">{{t "Subscribe"}}</span><span class="form-loading">{{t "Sending..."}}</span></button>
+            <p class="form-feedback form-feedback--success" id="members-success" role="status" aria-live="polite">{{t "Great! Check your inbox and click the link to confirm."}}</p>
+            <p class="form-feedback form-feedback--error" id="members-error" data-members-error role="alert" aria-live="assertive"></p>
+        </form>
+    </div>
+</section>
+{{/unless}}
+{{/if}}

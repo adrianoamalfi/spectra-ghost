@@ -1,0 +1,14 @@
+{{!-- Optional params: skip_featured (hide featured posts, shown elsewhere), skip_from (start at this 1-based index) --}}
+<div class="feed feed--{{@custom.post_feed_style}}" data-feed-list>
+    {{#foreach posts from=skip_from}}
+        {{#if ../skip_featured}}
+            {{#unless featured}}{{> post-card}}{{/unless}}
+        {{else}}
+            {{> post-card}}
+        {{/if}}
+    {{else}}
+        {{> empty-state}}
+    {{/foreach}}
+</div>
+
+{{pagination}}

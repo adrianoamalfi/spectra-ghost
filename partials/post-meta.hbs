@@ -1,0 +1,18 @@
+<div class="meta">
+    {{#if card}}{{#primary_tag}}<span class="meta-tag">{{name}}</span>{{/primary_tag}}{{/if}}
+    {{#match @custom.show_author_meta "Hidden"}}{{else}}
+        <span class="meta-authors">
+            {{#foreach authors}}
+                {{#if ../card}}
+                    <span class="meta-author">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="avatar" src="{{img_url profile_image size="xs"}}" alt="" width="24" height="24" loading="lazy">{{/if}}{{/match}}<span>{{name}}</span></span>
+                {{else}}
+                    <a class="meta-author" href="{{url}}">{{#match @custom.show_author_meta "Name and photo"}}{{#if profile_image}}<img class="avatar" src="{{img_url profile_image size="xs"}}" alt="" width="40" height="40">{{/if}}{{/match}}<span>{{name}}</span></a>
+                {{/if}}
+            {{/foreach}}
+        </span>
+    {{/match}}
+    <time datetime="{{date published_at format="YYYY-MM-DD"}}">{{date published_at format="LL"}}</time>
+    {{#if @custom.show_reading_time}}
+        {{#if access}}<span class="meta-reading-time">{{reading_time}}</span>{{/if}}
+    {{/if}}
+</div>

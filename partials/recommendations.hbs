@@ -1,0 +1,20 @@
+{{#if recommendations}}
+<section class="recs" aria-labelledby="recs-title">
+    <h2 class="recs-title" id="recs-title">{{t "Recommended sites"}}</h2>
+    <ul class="recs-list">
+        {{#foreach recommendations as |rec|}}
+            <li>
+                <a class="rec" href="{{rec.url}}" data-recommendation="{{rec.id}}" target="_blank" rel="noopener">
+                    {{#if rec.favicon}}<img class="rec-icon" src="{{rec.favicon}}" alt="" width="24" height="24" loading="lazy" decoding="async">{{/if}}
+                    <span class="rec-body">
+                        <span class="rec-title">{{rec.title}}</span>
+                        <span class="rec-url">{{readable_url rec.url}}</span>
+                        <span class="visually-hidden">{{t "Opens in a new tab"}}</span>
+                        {{#if rec.description}}<span class="rec-desc">{{rec.description}}</span>{{/if}}
+                    </span>
+                </a>
+            </li>
+        {{/foreach}}
+    </ul>
+</section>
+{{/if}}

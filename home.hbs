@@ -1,0 +1,46 @@
+{{!< default}}
+
+{{#if @custom.show_hero}}
+    {{> hero}}
+{{/if}}
+
+{{!-- Featured slider: the featured posts that the hero does not already show --}}
+{{#if @custom.show_featured_slider}}
+    {{#get "posts" filter="featured:true" include="tags,authors" limit="7" as |featured|}}
+        {{#if featured}}
+            <section class="container featured" aria-labelledby="featured-title">
+                <header class="section-header"><h2 class="section-title" id="featured-title">{{t "Featured"}}</h2></header>
+                <div class="featured-track" role="group" aria-labelledby="featured-title" tabindex="0">
+                    {{#if @custom.show_hero}}
+                        {{#match @custom.hero_style "Featured"}}
+                            {{#foreach featured from="2"}}{{> post-card}}{{/foreach}}
+                        {{else}}
+                            {{#foreach featured}}{{> post-card}}{{/foreach}}
+                        {{/match}}
+                    {{else}}
+                        {{#foreach featured}}{{> post-card}}{{/foreach}}
+                    {{/if}}
+                </div>
+            </section>
+        {{/if}}
+    {{/get}}
+{{/if}}
+
+<section class="container section">
+    <header class="section-header">
+        <h2 class="section-title">{{t "Latest posts"}}</h2>
+    </header>
+
+    {{!-- Posts the hero list already shows are skipped on the first page --}}
+    {{#if @custom.show_hero}}
+        {{#match @custom.hero_style "Featured"}}
+            {{> post-feed skip_featured=@custom.show_featured_slider skip_from="4"}}
+        {{else}}
+            {{> post-feed skip_featured=@custom.show_featured_slider}}
+        {{/match}}
+    {{else}}
+        {{> post-feed skip_featured=@custom.show_featured_slider}}
+    {{/if}}
+</section>
+
+{{#match @custom.footer_style "Signoff"}}{{else}}{{> subscribe-form}}{{/match}}

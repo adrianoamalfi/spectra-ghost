@@ -1,0 +1,18 @@
+{{!< default}}
+
+{{#tag}}
+<header class="container archive-header">
+    {{> breadcrumbs}}
+    <p class="eyebrow">{{t "Tag"}}</p>
+    <h1 class="archive-title">{{name}}</h1>
+    {{#if description}}
+        <p class="archive-description">{{description}}</p>
+    {{/if}}
+    <p class="archive-count">{{plural count.posts empty=(t "No posts") singular=(t "1 post") plural=(t "% posts")}}</p>
+</header>
+{{/tag}}
+
+<section class="container section">
+    <h2 class="visually-hidden">{{t "Latest posts"}}</h2>
+    {{> post-feed}}
+</section>

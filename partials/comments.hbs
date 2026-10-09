@@ -1,0 +1,6 @@
+{{#if comments}}
+<section class="article-comments container-narrow" data-lazy-comments>
+    {{!-- Parked in an inert <template>; post.js injects it (and runs the comments script) when the reader scrolls near. --}}
+    <template>{{comments title=(t "Comments") count=true}}</template>
+</section>
+{{/if}}

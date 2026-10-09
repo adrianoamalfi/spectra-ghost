@@ -1,0 +1,22 @@
+<section class="hero hero--featured">
+    <div class="container hf-grid">
+        <div class="tile hf-id{{#if @site.cover_image}} photo-ink{{/if}}">
+            {{#if @site.cover_image}}{{> hero-cover class="hero-bg"}}<div class="hero-scrim"></div>{{/if}}
+            <div>
+                {{#if @custom.hero_eyebrow}}<p class="hero-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
+                <h1 class="hero-title hf-title">{{@site.title}}</h1>
+            </div>
+            <div class="hf-id-foot">
+                {{#if @site.description}}<p class="hf-desc">{{@site.description}}</p>{{/if}}
+                {{> hero-cta}}
+            </div>
+        </div>
+        {{#get "posts" filter="featured:true" limit="1"}}
+            {{#foreach posts}}{{> hero-featured-card}}{{/foreach}}
+        {{else}}
+            {{#get "posts" limit="1"}}
+                {{#foreach posts}}{{> hero-featured-card}}{{/foreach}}
+            {{/get}}
+        {{/get}}
+    </div>
+</section>

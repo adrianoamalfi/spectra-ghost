@@ -1,0 +1,49 @@
+{{!< default}}
+
+{{!-- Template "Archive": assign it to any page in Ghost Admin. Shows the page content,
+      every public topic with its post count, then the full post index (grouped by year with JS). --}}
+{{#post}}
+<article class="{{post_class}} article archive-page">
+    <header class="article-header container">
+        {{> breadcrumbs}}
+        <h1 class="article-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
+    </header>
+    {{#if content}}<div class="gh-content" data-table-label="{{t "Scrollable table"}}" data-copy="{{t "Copy"}}" data-copied="{{t "Copied"}}" data-anchor-label="{{t "Copy link to this section"}}" data-zoom-label="{{t "Zoom image"}}" data-close-label="{{t "Close"}}" data-prev-label="{{t "Previous"}}" data-next-label="{{t "Next"}}">{{content}}</div>{{/if}}
+</article>
+{{/post}}
+
+{{!-- Bounded limits keep the page weight predictable (gscan rejects limit="all") --}}
+{{#get "tags" limit="100" include="count.posts" order="count.posts desc" as |topics|}}
+    {{#if topics}}
+        <section class="container section" aria-labelledby="archive-topics">
+            <header class="section-header"><h2 class="section-title" id="archive-topics">{{t "Browse by topic"}}</h2></header>
+            <div class="chip-list">
+                {{#foreach topics}}{{#if count.posts}}<a class="chip" href="{{url}}">{{name}}<span class="chip-count">{{count.posts}}</span></a>{{/if}}{{/foreach}}
+            </div>
+        </section>
+    {{/if}}
+{{/get}}
+
+{{#get "posts" limit="100" order="published_at desc" as |entries|}}
+    {{#if entries}}
+        <section class="container section" aria-labelledby="archive-all">
+            <header class="section-header"><h2 class="section-title" id="archive-all">{{t "All posts"}}</h2></header>
+            {{#match pagination.total ">" 100}}
+                <p class="archive-note">{{t "Showing the 100 most recent posts. Browse by topic above for older ones."}}</p>
+            {{/match}}
+            <ol class="archive-posts" id="archive-posts">
+                {{#foreach entries}}
+                    <li class="archive-post" data-year="{{date format="YYYY"}}">
+                        <a class="archive-post-link" href="{{url}}">
+                            <time datetime="{{date format="YYYY-MM-DD"}}" data-in-year="{{date format="D MMM"}}">{{date format="D MMM YYYY"}}</time>
+                            <i aria-hidden="true"></i>
+                            <span class="archive-post-title">{{title}}</span>
+                            {{#primary_tag}}<span class="archive-post-tag">{{name}}</span>{{/primary_tag}}
+                        </a>
+                    </li>
+                {{/foreach}}
+            </ol>
+        </section>
+    {{/if}}
+{{/get}}

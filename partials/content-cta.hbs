@@ -1,0 +1,16 @@
+{{!-- Ghost renders this partial after the truncated content of a gated post (it replaces the built-in call to action). Context: a post. --}}
+<aside class="post-upgrade tile" aria-labelledby="post-upgrade-title">
+    <p class="post-upgrade-badge">{{> "icons/lock"}}<span>{{#has visibility="paid"}}{{t "Premium"}}{{else}}{{t "Members"}}{{/has}}</span></p>
+    <h2 class="post-upgrade-title" id="post-upgrade-title">
+        {{#has visibility="paid"}}{{t "This post is for paying subscribers only"}}{{else has visibility="members"}}{{t "This post is for subscribers only"}}{{else}}{{t "Upgrade to keep reading"}}{{/has}}
+    </h2>
+    <p class="post-upgrade-text">{{t "Subscribe to {siteTitle} to keep reading this post and get access to the full archive." siteTitle=@site.title}}</p>
+    <div class="post-upgrade-actions">
+        {{#has visibility="paid"}}
+            <a class="button" href="#/portal/signup" data-portal="signup">{{t "Upgrade now"}}</a>
+        {{else}}
+            <a class="button" href="#/portal/signup" data-portal="signup">{{t "Subscribe"}}</a>
+        {{/has}}
+    </div>
+    <p class="post-upgrade-signin">{{t "Already have an account?"}} <a class="link" href="#/portal/signin" data-portal="signin">{{t "Sign in"}}</a></p>
+</aside>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}" data-scheme="{{@custom.color_scheme}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+
+    <script>
+        (function () {
+            var r = document.documentElement;
+            r.classList.add('js');
+            try {
+                var m = { system: 'Auto', light: 'Light', dark: 'Dark' }, v = localStorage.getItem('spectra-scheme');
+                if (m[v]) r.setAttribute('data-scheme', m[v]);
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="{{asset "css/screen.css"}}">
+    <style>:root { --accent-2: {{@custom.secondary_accent}}; }</style>
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}" data-header="{{@custom.header_style}}" data-progress="{{#if @custom.show_reading_progress}}on{{else}}off{{/if}}">
+
+    <a class="skip-link" href="#main">{{t "Skip to content"}}</a>
+
+    <div class="site">
+        {{> site-header}}
+
+        <main id="main" class="site-main">
+            {{{body}}}
+        </main>
+
+        {{> site-footer}}
+    </div>
+
+    <button class="back-to-top" type="button" hidden aria-label="{{t "Back to top"}}">{{> "icons/arrow-up"}}</button>
+
+    {{ghost_foot}}
+    <script src="{{asset "js/main.js"}}" defer></script>
+    {{#is "post, page"}}<script src="{{asset "js/post.js"}}" defer></script>{{/is}}
+</body>
+</html>

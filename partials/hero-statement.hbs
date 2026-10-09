@@ -1,0 +1,20 @@
+<section class="hero hero--statement">
+    <div class="container">
+        <div class="tile hs{{#if @site.cover_image}} has-cover{{/if}}">
+            <div class="hs-text">
+                <p class="hero-hello">{{#if @custom.hero_eyebrow}}{{@custom.hero_eyebrow}}{{else}}{{@site.title}}{{/if}}</p>
+                <h1 class="hero-title hs-statement">{{#if @custom.personal_hero_headline}}{{@custom.personal_hero_headline}}{{else}}{{#if @site.description}}{{@site.description}}{{else}}{{@site.title}}{{/if}}{{/if}}</h1>
+                {{#if @custom.personal_hero_text}}<p class="hs-lede">{{@custom.personal_hero_text}}</p>{{/if}}
+                <div class="hs-foot">
+                    {{#get "tags" limit="4" include="count.posts" order="count.posts desc"}}
+                        <nav class="hs-tags" aria-label="{{t "Topics"}}">
+                            {{#foreach tags}}{{#if count.posts}}<a class="link" href="{{url}}">{{name}}</a>{{/if}}{{/foreach}}
+                        </nav>
+                    {{/get}}
+                    {{> hero-cta}}
+                </div>
+            </div>
+            {{#if @site.cover_image}}<figure class="hs-photo">{{> hero-cover}}</figure>{{/if}}
+        </div>
+    </div>
+</section>

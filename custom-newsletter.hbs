@@ -1,0 +1,37 @@
+{{!< default}}
+
+{{!-- Template "Newsletter": the page content, a subscribe form, then past editions.
+      Editions are posts carrying the internal tag #newsletter (tag:hash-newsletter), so they
+      never appear as a public tag. --}}
+{{#post}}
+<article class="{{post_class}} article">
+    <header class="article-header container">
+        {{> breadcrumbs}}
+        <h1 class="article-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
+    </header>
+    {{#if content}}<div class="gh-content" data-table-label="{{t "Scrollable table"}}" data-copy="{{t "Copy"}}" data-copied="{{t "Copied"}}" data-anchor-label="{{t "Copy link to this section"}}" data-zoom-label="{{t "Zoom image"}}" data-close-label="{{t "Close"}}" data-prev-label="{{t "Previous"}}" data-next-label="{{t "Next"}}">{{content}}</div>{{/if}}
+</article>
+{{/post}}
+
+{{> subscribe-form}}
+
+{{#get "posts" filter="tag:hash-newsletter" limit="24" order="published_at desc" as |editions|}}
+    {{#if editions}}
+        <section class="container section" aria-labelledby="past-editions">
+            <header class="section-header"><h2 class="section-title" id="past-editions">{{t "Past editions"}}</h2></header>
+            <ol class="archive-posts">
+                {{#foreach editions}}
+                    <li class="archive-post">
+                        <a class="archive-post-link" href="{{url}}">
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                            <i aria-hidden="true"></i>
+                            <span class="archive-post-title">{{title}}</span>
+                            {{#primary_tag}}<span class="archive-post-tag">{{name}}</span>{{/primary_tag}}
+                        </a>
+                    </li>
+                {{/foreach}}
+            </ol>
+        </section>
+    {{/if}}
+{{/get}}
