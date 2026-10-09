@@ -75,18 +75,28 @@
             if (!next) { io.disconnect(); return; }
             if (busy) return;
             busy = true;
+            var failed = false;
             note.textContent = pager.getAttribute('data-loading-label') || '';
             feed.parentNode.insertBefore(note, pager);
             fetch(next.href, { credentials: 'same-origin' })
                 .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
                 .then(function (html) {
                     var doc = new DOMParser().parseFromString(html, 'text/html');
-                    doc.querySelectorAll('[data-feed-list] > .card').forEach(function (c) { feed.appendChild(document.importNode(c, true)); });
+                    var nextFeed = doc.querySelector('[data-feed-list]');
+                    if (!nextFeed) throw new Error('Next page has no post feed');
+                    nextFeed.querySelectorAll(':scope > .card').forEach(function (c) { feed.appendChild(document.importNode(c, true)); });
                     var np = doc.querySelector('.pagination');
                     if (np) pager.innerHTML = np.innerHTML; else { pager.remove(); io.disconnect(); }
                 })
-                .catch(function () { io.disconnect(); })
-                .then(function () { busy = false; note.textContent = ''; note.remove(); });
+                .catch(function () {
+                    failed = true;
+                    io.disconnect();
+                    note.textContent = pager.getAttribute('data-error-label') || '';
+                })
+                .then(function () {
+                    busy = false;
+                    if (!failed) { note.textContent = ''; note.remove(); }
+                });
         };
         io.observe(sentinel);
     }

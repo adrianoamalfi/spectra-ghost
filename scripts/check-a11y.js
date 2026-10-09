@@ -21,6 +21,8 @@ function templates(dir, out) {
 
 const rules = [
     { name: '<img> without alt', tag: /<img\b[^>]*>/gs, ok: /\balt=/ },
+    { name: 'lazy <img> without width', tag: /<img\b(?=[^>]*\bloading="lazy")[^>]*>/gs, ok: /\bwidth=["'][^"']+["']/ },
+    { name: 'lazy <img> without height', tag: /<img\b(?=[^>]*\bloading="lazy")[^>]*>/gs, ok: /\bheight=["'][^"']+["']/ },
     { name: '<button> without type', tag: /<button\b[^>]*>/gs, ok: /\btype=/ },
     { name: 'target="_blank" without rel', tag: /<a\b[^>]*target="_blank"[^>]*>/gs, ok: /\brel="[^"]*noopener/ },
     { name: '<svg> neither hidden nor labelled', tag: /<svg\b[^>]*>/gs, ok: /aria-hidden="true"|aria-label=|role="img"/ },

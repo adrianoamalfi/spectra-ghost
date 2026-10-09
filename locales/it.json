@@ -79,5 +79,8 @@
     "No posts": "Nessun articolo",
     "1 post": "1 articolo",
     "% posts": "% articoli",
-    "Comments": "Commenti"
+    "Comments": "Commenti",
+    "Could not load more posts. Use the pagination links to continue.": "Impossibile caricare altri articoli. Usa i link di paginazione per continuare.",
+    "Copied to clipboard.": "Copiato negli appunti.",
+    "Could not copy. Please try again.": "Impossibile copiare. Riprova."
 }

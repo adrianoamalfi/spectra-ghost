@@ -1,14 +1,34 @@
-{{!-- Optional params: skip_featured (hide featured posts, shown elsewhere), skip_from (start at this 1-based index) --}}
+{{!-- Optional params skip posts shown elsewhere on the first page only. --}}
 <div class="feed feed--{{@custom.post_feed_style}}" data-feed-list>
-    {{#foreach posts from=skip_from}}
-        {{#if ../skip_featured}}
-            {{#unless featured}}{{> post-card}}{{/unless}}
+    {{#match pagination.page 1}}
+        {{#if skip_from}}
+            {{#foreach posts from=skip_from}}
+                {{#if ../skip_featured}}
+                    {{#unless featured}}{{> post-card}}{{/unless}}
+                {{else}}
+                    {{> post-card}}
+                {{/if}}
+            {{else}}
+                {{> empty-state}}
+            {{/foreach}}
         {{else}}
-            {{> post-card}}
+            {{#foreach posts}}
+                {{#if ../skip_featured}}
+                    {{#unless featured}}{{> post-card}}{{/unless}}
+                {{else}}
+                    {{> post-card}}
+                {{/if}}
+            {{else}}
+                {{> empty-state}}
+            {{/foreach}}
         {{/if}}
     {{else}}
-        {{> empty-state}}
-    {{/foreach}}
+        {{#foreach posts}}
+            {{> post-card}}
+        {{else}}
+            {{> empty-state}}
+        {{/foreach}}
+    {{/match}}
 </div>
 
 {{pagination}}

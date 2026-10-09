@@ -79,5 +79,8 @@
     "No posts": "No posts",
     "1 post": "1 post",
     "% posts": "% posts",
-    "Comments": "Comments"
+    "Comments": "Comments",
+    "Could not load more posts. Use the pagination links to continue.": "Could not load more posts. Use the pagination links to continue.",
+    "Copied to clipboard.": "Copied to clipboard.",
+    "Could not copy. Please try again.": "Could not copy. Please try again."
 }

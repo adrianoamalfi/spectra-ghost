@@ -25,6 +25,24 @@
         }
         return legacyCopy(text);
     }
+    var copyStatus, copyStatusTimer;
+    function announceCopy(success) {
+        if (!copyStatus) {
+            copyStatus = document.createElement('p');
+            copyStatus.className = 'action-status';
+            copyStatus.setAttribute('role', 'status');
+            copyStatus.setAttribute('aria-live', 'polite');
+            copyStatus.setAttribute('aria-atomic', 'true');
+            document.body.appendChild(copyStatus);
+        }
+        window.clearTimeout(copyStatusTimer);
+        copyStatus.hidden = false;
+        copyStatus.textContent = '';
+        window.requestAnimationFrame(function () {
+            copyStatus.textContent = document.body.getAttribute(success ? 'data-copy-success' : 'data-copy-error') || (success ? 'Copied to clipboard.' : 'Could not copy. Please try again.');
+        });
+        copyStatusTimer = window.setTimeout(function () { copyStatus.hidden = true; }, 2600);
+    }
     function flash(el, cls, ms) { el.classList.add(cls); setTimeout(function () { el.classList.remove(cls); }, ms || 1600); }
 
     // Share: copy link
@@ -32,8 +50,9 @@
         b.addEventListener('click', function () {
             copy(b.getAttribute('data-share-url')).then(function () {
                 b.setAttribute('data-state', 'copied');
+                announceCopy(true);
                 setTimeout(function () { b.removeAttribute('data-state'); }, 1800);
-            }).catch(function () {});
+            }).catch(function () { announceCopy(false); });
         });
     });
 
@@ -123,7 +142,10 @@
         a.setAttribute('aria-label', label('anchor-label', 'Copy link to this section'));
         a.textContent = '#';
         a.addEventListener('click', function () {
-            copy(location.origin + location.pathname + '#' + h.id).then(function () { flash(a, 'is-copied'); }).catch(function () {});
+            copy(location.origin + location.pathname + '#' + h.id).then(function () {
+                flash(a, 'is-copied');
+                announceCopy(true);
+            }).catch(function () { announceCopy(false); });
         });
         h.appendChild(a);
     });
@@ -140,8 +162,9 @@
             copy((pre.querySelector('code') || pre).textContent).then(function () {
                 b.textContent = label('copied', 'Copied');
                 b.classList.add('is-copied');
+                announceCopy(true);
                 setTimeout(function () { b.textContent = label('copy', 'Copy'); b.classList.remove('is-copied'); }, 1600);
-            }).catch(function () {});
+            }).catch(function () { announceCopy(false); });
         });
         pre.setAttribute('tabindex', '0');
         pre.parentNode.insertBefore(wrap, pre);

@@ -1,13 +1,16 @@
 # Spectra
 
-A modern, flexible and accessible [Ghost](https://ghost.org) theme for personal sites: a home, writing, pages and anything in between. Plain CSS and a little progressive JavaScript, no build step, no framework.
+A modern, flexible and accessible [Ghost](https://ghost.org) theme for personal sites: a homepage, a place for writing, and pages in between. Plain CSS and a little progressive JavaScript, no build step, no framework.
 
 Theme page: [adrianoamalfi.com/spectra](https://adrianoamalfi.com/spectra/) · Documentation: [adrianoamalfi.github.io/spectra-ghost](https://adrianoamalfi.github.io/spectra-ghost/)
+
+[![CI](https://github.com/adrianoamalfi/spectra-ghost/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/adrianoamalfi/spectra-ghost/actions/workflows/ci.yml)
+[![Latest release](https://img.shields.io/github/v/release/adrianoamalfi/spectra-ghost)](https://github.com/adrianoamalfi/spectra-ghost/releases)
 
 
 | | |
 | --- | --- |
-| **Featured**: identity and the featured post, then the latest posts as a ruled list | **Masthead**: the name across the full width |
+| **Featured**: identity and the featured post; the latest-post list appears when the featured slider is off | **Masthead**: the name across the full width |
 | ![Featured hero](docs/screenshots/home-featured.webp) | ![Masthead hero](docs/screenshots/home-masthead.webp) |
 | **Statement**: your description is the headline | **Index**: your topics are the hero |
 | ![Statement hero](docs/screenshots/home-statement.webp) | ![Index hero](docs/screenshots/home-index.webp) |
@@ -33,7 +36,7 @@ Theme page: [adrianoamalfi.com/spectra](https://adrianoamalfi.com/spectra/) · D
 
 ## Requirements
 
-- Ghost 6.0 or newer (tested with 6.51).
+- Ghost 6.0 or newer (tested with Ghost 6.69).
 - A current browser. The theme uses relative colour syntax, `light-dark()`, container queries and `:has()`: Chrome and Edge 123+, Safari 17.5+, Firefox 128+. View Transitions and scroll-driven animations are progressive: where unsupported, the pages simply do not animate.
 
 ## Install
@@ -87,12 +90,13 @@ Ghost Admin, Design & branding, Site-wide and Homepage / Post groups.
 The **accent colour** is Ghost's own (Design, Brand). Spectra derives everything else from it. The **publication cover** (Settings, General) is the hero image; without it the heroes render their image-free version.
 
 Visitors can override the colour scheme with the switch in the header. Their choice is saved in their browser and wins over `color_scheme`.
+The header logo is shown as uploaded in Light mode and rendered monochrome white in Dark mode; Auto follows the visitor's system preference.
 
 ## Homepage
 
 | Hero style | What it shows |
 | --- | --- |
-| **Featured** | Your identity next to the featured post (the latest post if none is featured), then the three latest posts as a ruled list. |
+| **Featured** | Your identity next to the featured post (the latest post if none is featured). With the slider off, the hero also shows the latest posts as a ruled list; with it on, and when other featured posts exist, they appear in the slider instead. |
 | **Masthead** | The site name across the full width, a hairline, then description and subscribe. With a cover, a panoramic strip appears. |
 | **Statement** | The site description (or `personal_hero_headline`) is the headline, with your top topics as links. With a cover the tile splits in two. |
 | **Index** | Your topics and their real post counts are the hero. With a cover the identity sits on the image. |
@@ -108,7 +112,7 @@ Pick them in the page settings (Template). Each page keeps its title and content
 | *Default* | A normal page. |
 | **Landing** | A page built entirely from editor cards, with no title or chrome. |
 | **Archive** | The page content, every public topic with its post count, then all posts (grouped by year when JavaScript is available). |
-| **Membership** | The page content, then your paid tiers, each with a Portal sign-up button, then the subscribe form. |
+| **Membership** | The page content, then your paid tiers with monthly and annual Portal sign-up options where available, then the subscribe form. |
 | **Newsletter** | The page content, a subscribe form, then past editions. Tag your sent newsletters with the internal tag `#newsletter`; they list here without appearing as a public tag. |
 
 ## Posts
@@ -137,10 +141,12 @@ Spectra reads Ghost's site language. Included: `en`, `it`, `de`, `es`, `fr`, `pt
 
 ## Development
 
+For contribution guidelines, pull request checks, and release steps, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ```bash
-npm install
+npm ci
 npm run check        # gscan + translations + static accessibility checks
-npm run zip          # spectra.zip, ready to upload
+npm run zip          # spectra.zip, ready to upload; no system zip command needed
 npm run docs         # regenerate the settings tables in the README and the docs site
 ```
 
@@ -153,6 +159,8 @@ ln -s "$PWD" /path/to/ghost/content/themes/spectra
 ### Documentation site
 
 `docs/` is a static site published with GitHub Pages (Settings, Pages, branch `main`, folder `/docs`). The settings tables are generated by `npm run docs`; CI fails if they are out of date. The screenshots come from `scripts/screenshots.mjs`, which drives a local Chrome through the DevTools protocol against a running Ghost (see the header of that file for the groups and options).
+
+Pull requests run the CI workflow, which also validates the installable theme ZIP. Pushing a `vX.Y.Z` tag matching the package version runs the Release workflow and publishes `spectra.zip` to GitHub Releases. See [CONTRIBUTING.md](CONTRIBUTING.md) for the release steps and the `main` branch protection settings maintainers should enable.
 
 Changes to CSS and JavaScript show after a reload; changes to templates or to `package.json` settings need a Ghost restart.
 
@@ -175,7 +183,7 @@ Changes to CSS and JavaScript show after a reload; changes to templates or to `p
 | `assets/js/main.js` | Site-wide: menu, scheme switch, infinite scroll, archive, title fitting |
 | `assets/js/post.js` | Posts and pages: contents, anchors, code copy, lightbox, comments |
 | `locales/` | Translations |
-| `scripts/` | `check-i18n.js`, `check-a11y.js`, `docs-settings.mjs`, `screenshots.mjs` |
+| `scripts/` | `check-i18n.js`, `check-a11y.js`, `docs-settings.mjs`, `package-theme.mjs`, `screenshots.mjs` |
 | `docs/` | The documentation site (GitHub Pages) and its screenshots |
 
 ## Credits and licence

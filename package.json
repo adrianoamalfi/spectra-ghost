@@ -1,6 +1,6 @@
 {
   "name": "spectra",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A modern, flexible and accessible Ghost theme for personal sites: four hero styles, two footers, a colour system generated from one accent, and a calm reading experience.",
   "license": "MIT",
   "homepage": "https://adrianoamalfi.com/spectra/",
@@ -37,11 +37,12 @@
     "check:i18n": "node scripts/check-i18n.js",
     "check:a11y": "node scripts/check-a11y.js",
     "check": "npm test && npm run check:i18n && npm run check:a11y",
-    "zip": "rm -f spectra.zip && zip -r spectra.zip . -x '.*' -x 'node_modules/*' -x '*.zip' -x 'scripts/*' -x 'docs/*' -x '*.md' -x 'LICENSE' -x 'package-lock.json' -x 'routes.example.yaml'",
+    "zip": "node scripts/package-theme.mjs",
     "docs": "node scripts/docs-settings.mjs",
     "screenshots": "node scripts/screenshots.mjs"
   },
   "devDependencies": {
+    "archiver": "^8.0.0",
     "gscan": "^6.6.1"
   },
   "overrides": {

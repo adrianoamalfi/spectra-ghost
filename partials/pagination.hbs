@@ -1,5 +1,5 @@
 {{#match pages ">" 1}}
-    <nav class="pagination" aria-label="{{t "Pagination"}}" data-loading-label="{{t "Loading..."}}">
+    <nav class="pagination" aria-label="{{t "Pagination"}}" data-loading-label="{{t "Loading..."}}" data-error-label="{{t "Could not load more posts. Use the pagination links to continue."}}">
         {{#if prev}}
             <a class="pagination-link" href="{{page_url prev}}" rel="prev">&larr; {{t "Newer"}}</a>
         {{else}}

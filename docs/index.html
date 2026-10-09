@@ -40,7 +40,7 @@
             <h1>Spectra</h1>
             <p class="lead">A Ghost theme that colours itself from one accent. Modern, flexible and accessible, for personal sites.</p>
             <div class="hero-actions">
-                <a class="btn" href="https://github.com/adrianoamalfi/spectra-ghost/releases/tag/v0.2.0">Download 0.2.0</a>
+                <a class="btn" href="https://github.com/adrianoamalfi/spectra-ghost/releases/latest">Download latest release</a>
                 <a class="btn ghost" href="#install">How to install</a>
             </div>
             <ul class="facts">
@@ -52,7 +52,7 @@
             </ul>
         </div>
         <figure class="frame">
-            <img src="screenshots/home-featured.webp" width="1440" height="900" alt="Spectra home page with the Featured hero: identity on the publication cover next to the featured post, then the latest posts as a ruled list.">
+            <img src="screenshots/home-featured.webp" width="1440" height="900" alt="Spectra home page with the Featured hero and a row of other featured posts below.">
         </figure>
     </div>
     <div class="picker">
@@ -174,7 +174,7 @@
 <section class="wrap" id="install">
     <div class="section-head">
         <h2>Install</h2>
-        <p>Spectra needs Ghost 6.0 or newer (tested with 6.51) and a current browser: Chrome and Edge 123+, Safari 17.5+, Firefox 128+.</p>
+        <p>Spectra needs Ghost 6.0 or newer (tested with Ghost 6.69) and a current browser: Chrome and Edge 123+, Safari 17.5+, Firefox 128+.</p>
     </div>
     <ol class="steps narrow">
         <li><div><p><strong>Get the theme.</strong> Download <code>spectra.zip</code> from the <a href="https://github.com/adrianoamalfi/spectra-ghost/releases">Releases</a> page, or build it with <code>npm run zip</code>.</p></div></li>
@@ -190,7 +190,7 @@
                 <tbody>
                 <tr><td><strong>Landing</strong></td><td>A page built entirely from editor cards, with no title or chrome.</td></tr>
                 <tr><td><strong>Archive</strong></td><td>Topics with counts, then every post, grouped by year.</td></tr>
-                <tr><td><strong>Membership</strong></td><td>Your content, then your paid tiers with Portal sign-up buttons.</td></tr>
+                <tr><td><strong>Membership</strong></td><td>Your content, then paid tiers with monthly and annual Portal sign-up options where available.</td></tr>
                 <tr><td><strong>Newsletter</strong></td><td>A subscribe form and past editions. Tag sent issues with the internal tag <code>#newsletter</code>.</td></tr>
                 </tbody>
             </table></div>
@@ -245,7 +245,7 @@
 <tr><td><code>show_related_posts</code></td><td>Related posts</td><td>On / Off (default: on)</td><td></td></tr>
 </tbody></table></div>
 <!-- settings:end -->
-    <p style="color:var(--muted)">Visitors can override the colour scheme with the switch in the header; their choice is saved in their browser and wins over <code>color_scheme</code>.</p>
+    <p style="color:var(--muted)">Visitors can override the colour scheme with the switch in the header; their choice is saved in their browser and wins over <code>color_scheme</code>. The header logo keeps its uploaded colours in Light mode and becomes monochrome white in Dark mode; Auto follows the visitor's system preference.</p>
 </section>
 
 <section class="wrap" id="colour">
@@ -295,9 +295,10 @@
     </div>
     <div class="two">
         <div>
-<pre><code>npm install
+<pre><code>npm ci
 npm run check   # gscan, translations, static accessibility
 npm run zip     # spectra.zip, ready to upload</code></pre>
+            <p style="color:var(--muted)">Pull requests run CI, which validates the theme and ZIP. A matching <code>vX.Y.Z</code> tag publishes a GitHub Release. See <a href="https://github.com/adrianoamalfi/spectra-ghost/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> for the release process and branch protection guidance.</p>
             <p style="color:var(--muted)">Link the folder into a local Ghost install and restart Ghost: <code>ln -s "$PWD" /path/to/ghost/content/themes/spectra</code>. CSS and JavaScript changes show after a reload; templates and settings need a restart.</p>
             <p style="color:var(--muted)">The screenshots on this page come from <code>scripts/screenshots.mjs</code>, which drives a local Chrome through the DevTools protocol.</p>
         </div>

@@ -6,7 +6,7 @@
      node scripts/screenshots.mjs --base http://localhost:2368 --out docs/screenshots --group featured
 
    Groups match the Ghost state they need (hero style, footer style, cover), see GROUPS below.
-   Set CHROME to the browser binary if it is not in the default macOS location. */
+   Set CHROME to the browser binary if it is not on PATH or in the default macOS location. */
 import { spawn } from 'node:child_process';
 import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -16,7 +16,9 @@ const args = Object.fromEntries(process.argv.slice(2).reduce((a, v, i, all) => (
 const BASE = (args.base || 'http://localhost:2368').replace(/\/$/, '');
 const OUT = args.out || 'docs/screenshots';
 const GROUP = args.group;
-const CHROME = process.env.CHROME || '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+const CHROME = process.env.CHROME || (process.platform === 'darwin'
+    ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
+    : 'chromium');
 const PORT = 9333;
 
 // Shot fields: name, path, w, h, dpr, scheme (light|dark), mobile, js (run before capture), scroll (selector to centre),
@@ -39,7 +41,7 @@ const GROUPS = {
         { name: 'post-dark', path: '/guida-tipografia/', w: 1440, h: 1000, dpr: 1, scheme: 'dark' },
         { name: 'post-share', path: '/guida-tipografia/', ...desktop, scheme: 'light', scroll: '.share' },
         { name: 'lightbox', path: '/kitchen-sink-tutte-le-card-koenig/', ...desktop, scheme: 'dark', js: "document.querySelector('img[data-zoom]').click()", wait: 900 },
-        { name: 'gated', path: '/post-riservato-agli-iscritti/', ...desktop, scheme: 'light', scroll: '.post-upgrade' },
+        { name: 'gated', path: '/measuring-before-optimizing/', ...desktop, scheme: 'light', scroll: '.post-upgrade' },
         { name: 'archive', path: '/about/', w: 1440, h: 1000, dpr: 1, scheme: 'light' },
         { name: 'membership', path: '/astrix/', w: 1440, h: 1000, dpr: 1, scheme: 'light' },
         { name: 'tag', path: '/tag/design/', ...desktop, scheme: 'light' },
@@ -55,7 +57,7 @@ const GROUPS = {
     index: hero('index'),
     // same four heroes without a publication cover (run once per hero style)
     nocover: [{ name: 'home-HERO-nocover', path: '/', ...desktop, scheme: 'light' }],
-    newsletter: [{ name: 'newsletter', path: '/astrix/', w: 1440, h: 1000, dpr: 1, scheme: 'light' }],
+    newsletter: [{ name: 'newsletter', path: '/newsletter/', w: 1440, h: 1000, dpr: 1, scheme: 'light' }],
 };
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -66,7 +68,7 @@ if (!GROUP || !GROUPS[GROUP]) {
 mkdirSync(OUT, { recursive: true });
 
 const profile = mkdtempSync(join(tmpdir(), 'spectra-shots-'));
-const chrome = spawn(CHROME, ['--headless=new', `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', 'about:blank'], { stdio: 'ignore' });
+const chrome = spawn(CHROME, ['--headless=new', '--no-sandbox', `--remote-debugging-port=${PORT}`, `--user-data-dir=${profile}`, '--no-first-run', '--disable-gpu', '--hide-scrollbars', 'about:blank'], { stdio: 'ignore' });
 const stop = () => { try { chrome.kill(); } catch (e) { /* already gone */ } };
 process.on('exit', stop);
 
