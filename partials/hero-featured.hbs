@@ -1,22 +1,19 @@
 <section class="hero hero--featured">
     <div class="container hf-grid">
-        <div class="tile hf-id{{#if @site.cover_image}} photo-ink{{/if}}">
-            {{#if @site.cover_image}}{{> hero-cover class="hero-bg" sizes="(min-width: 80rem) 31rem, (min-width: 48rem) 40vw, 100vw"}}<div class="hero-scrim"></div>{{/if}}
-            <div>
-                {{#if @custom.hero_eyebrow}}<p class="hero-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
-                <h1 class="hero-title hf-title">{{@site.title}}</h1>
-            </div>
-            <div class="hf-id-foot">
-                {{#if @site.description}}<p class="hf-desc">{{@site.description}}</p>{{/if}}
-                {{> hero-cta}}
-            </div>
-        </div>
         {{#get "posts" filter="featured:true" limit="1" as |featured|}}
-            {{#foreach featured}}{{> hero-featured-card}}{{/foreach}}
-        {{else}}
-            {{#get "posts" limit="1" as |latest|}}
-                {{#foreach latest}}{{> hero-featured-card}}{{/foreach}}
-            {{/get}}
+            {{#if featured}}
+                {{> hero-featured-id sizes="(min-width: 80rem) 31rem, (min-width: 48rem) 40vw, 100vw"}}
+                {{#foreach featured}}{{> hero-featured-card}}{{/foreach}}
+            {{else}}
+                {{#get "posts" limit="1" as |latest|}}
+                    {{#if latest}}
+                        {{> hero-featured-id sizes="(min-width: 80rem) 31rem, (min-width: 48rem) 40vw, 100vw"}}
+                        {{#foreach latest}}{{> hero-featured-card}}{{/foreach}}
+                    {{else}}
+                        {{> hero-featured-id sizes="(min-width: 80rem) 76rem, 100vw"}}
+                    {{/if}}
+                {{/get}}
+            {{/if}}
         {{/get}}
     </div>
 </section>
