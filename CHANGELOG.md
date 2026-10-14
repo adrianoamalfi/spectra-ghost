@@ -4,6 +4,9 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+- Homepage hero images now ship `srcset` and `sizes`, so the cover and the featured post image load at the size the screen needs instead of always the largest one, for fewer bytes and a faster LCP. The largest candidate is unchanged, so no screen downloads more than before.
+
 ## [0.4.0] - 2026-10-14
 
 ### Added

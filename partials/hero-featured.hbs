@@ -1,7 +1,7 @@
 <section class="hero hero--featured">
     <div class="container hf-grid">
         <div class="tile hf-id{{#if @site.cover_image}} photo-ink{{/if}}">
-            {{#if @site.cover_image}}{{> hero-cover class="hero-bg"}}<div class="hero-scrim"></div>{{/if}}
+            {{#if @site.cover_image}}{{> hero-cover class="hero-bg" sizes="(min-width: 80rem) 31rem, (min-width: 48rem) 40vw, 100vw"}}<div class="hero-scrim"></div>{{/if}}
             <div>
                 {{#if @custom.hero_eyebrow}}<p class="hero-hello">{{@custom.hero_eyebrow}}</p>{{/if}}
                 <h1 class="hero-title hf-title">{{@site.title}}</h1>
