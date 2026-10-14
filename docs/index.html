@@ -128,10 +128,12 @@
             <ul>
                 <li>Table of contents with scroll-spy, collapsed on small screens</li>
                 <li>Heading anchors that copy the section link</li>
-                <li>Copy button on code blocks, scrollable tables</li>
+                <li>Copy button on code blocks, scrollable tables, and a language badge when the code is marked up</li>
+                <li>Markdown footnotes with a hairline and a <code>:target</code> highlight</li>
                 <li>Image lightbox on a native dialog, with arrow keys</li>
                 <li>Reading progress, previous and next post, related posts</li>
                 <li>Comments loaded only when the reader scrolls near them</li>
+                <li>Search opens with <code>⌘K</code> / <code>Ctrl+K</code> or <code>/</code></li>
             </ul>
         </div>
         <figure class="frame"><img loading="lazy" decoding="async" src="screenshots/lightbox.webp" width="1440" height="900" alt="The image lightbox open over an article, with previous, next and close buttons and the caption."></figure>
@@ -139,7 +141,7 @@
     <div class="row flip">
         <div class="text">
             <h3>Share, support, continue</h3>
-            <p>The share row offers X, Facebook and a copy-link button, the same accounts Ghost has in Social accounts. With donations on it also carries a support button.</p>
+            <p>The share row offers X, Facebook and a copy-link button, the same accounts Ghost has in Social accounts. On devices with the Web Share API a native share button appears first, opening the system share sheet. With donations on it also carries a support button.</p>
         </div>
         <figure class="frame"><img loading="lazy" decoding="async" src="screenshots/post-share.webp" width="1440" height="900" alt="The end of an article with tags, the share row, previous and next post links and related posts."></figure>
     </div>
@@ -155,7 +157,7 @@
 <section class="wrap" id="more">
     <div class="section-head">
         <h2>Pages, footers and phones</h2>
-        <p>Four page templates, two footers and a header that turns into a menu on small screens.</p>
+        <p>Five page templates, two footers and a header that turns into a menu on small screens.</p>
     </div>
     <div class="shelf three">
         <figure class="frame"><img loading="lazy" decoding="async" src="screenshots/archive.webp" width="1440" height="1000" alt="The Archive page: topics with counts and every post grouped by year."><figcaption>Archive template</figcaption></figure>
@@ -184,7 +186,7 @@
         <li><div><p><strong>Get the theme.</strong> Download <code>spectra.zip</code> from the <a href="https://github.com/adrianoamalfi/spectra-ghost/releases">Releases</a> page, or build it with <code>npm run zip</code>.</p></div></li>
         <li><div><p><strong>Upload it.</strong> In Ghost Admin open Settings, Design &amp; branding, Change theme, Upload theme, then activate it.</p></div></li>
         <li><div><p><strong>Choose your look.</strong> Open Design to pick the hero, footer and feed styles. Set your accent colour under Brand and your cover under Settings, General.</p></div></li>
-        <li><div><p><strong>Add the page templates you need.</strong> In the page settings pick Landing, Archive, Membership or Newsletter.</p></div></li>
+        <li><div><p><strong>Add the page templates you need.</strong> In the page settings pick Landing, Archive, Membership, Newsletter or Portfolio.</p></div></li>
     </ol>
     <div class="two" style="margin-top:2.5rem">
         <div>
@@ -196,6 +198,7 @@
                 <tr><td><strong>Archive</strong></td><td>Topics with counts, then every post, grouped by year.</td></tr>
                 <tr><td><strong>Membership</strong></td><td>Your content, then paid tiers with monthly and annual Portal sign-up options where available.</td></tr>
                 <tr><td><strong>Newsletter</strong></td><td>A subscribe form and past editions. Tag sent issues with the internal tag <code>#newsletter</code>.</td></tr>
+                <tr><td><strong>Portfolio</strong></td><td>Your content, then a grid of project posts tagged <code>#portfolio</code> or <code>#project</code>, each with its image, excerpt and tags.</td></tr>
                 </tbody>
             </table></div>
         </div>
@@ -312,7 +315,7 @@ npm run zip     # spectra.zip, ready to upload</code></pre>
             <tr><td><code>default.hbs</code></td><td>Base layout, scheme script, header, footer</td></tr>
             <tr><td><code>home.hbs</code>, <code>index.hbs</code></td><td>Home (hero, slider, feed) and the paginated list</td></tr>
             <tr><td><code>post.hbs</code>, <code>page.hbs</code></td><td>Post and page</td></tr>
-            <tr><td><code>custom-*.hbs</code></td><td>Landing, Archive, Membership, Newsletter, Essay, Note</td></tr>
+            <tr><td><code>custom-*.hbs</code></td><td>Landing, Archive, Membership, Newsletter, Portfolio, Essay, Note</td></tr>
             <tr><td><code>partials/hero-*.hbs</code></td><td>The four heroes</td></tr>
             <tr><td><code>partials/footer-*.hbs</code></td><td>The two footers</td></tr>
             <tr><td><code>assets/css/screen.css</code></td><td>Tokens, components, Koenig cards, motion, print</td></tr>

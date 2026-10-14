@@ -4,6 +4,18 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-14
+
+### Added
+- A **Portfolio** page template (`custom-portfolio.hbs`): the page content, then a responsive grid of project posts tagged `#portfolio` or `#project`, each with its image, excerpt and tags.
+- A global keyboard shortcut for Ghost search: `⌘K` / `Ctrl+K` anywhere, or `/` when not typing, with a subtle `⌘K` hint in the header on desktop.
+- A native share button in the share row, shown only where the Web Share API is supported, opening the system share sheet; the X, Facebook and copy-link buttons remain the fallback.
+- A language badge on code blocks, read from the `language-*` class Ghost adds to the code, styled in the theme's monospace type.
+- Dedicated styles for Markdown footnotes: superscript references that keep the line height, a hairline-separated footnotes list, a quiet back-reference, and a `:target` highlight when a footnote is jumped to.
+
+### Changed
+- The share row and reading experience now include the reader conveniences above; all new strings are translated across the seven supported locales.
+
 ## [0.3.2] - 2026-10-14
 
 ### Changed

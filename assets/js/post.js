@@ -56,6 +56,16 @@
         });
     });
 
+    // Share: native sheet (Web Share API). Progressive: the button stays hidden where unsupported,
+    // so the X / Facebook / copy-link buttons remain the fallback.
+    var nativeShare = document.querySelector('[data-web-share]');
+    if (nativeShare && navigator.share) {
+        nativeShare.hidden = false;
+        nativeShare.addEventListener('click', function () {
+            navigator.share({ title: document.title, url: window.location.href }).catch(function () { /* dismissed */ });
+        });
+    }
+
     // Comments: inject the Ghost comments script only when the reader scrolls near
     var host = document.querySelector('[data-lazy-comments]');
     if (host) {
@@ -150,7 +160,7 @@
         h.appendChild(a);
     });
 
-    // Code blocks: copy button
+    // Code blocks: copy button, and a language badge when Ghost marks the code with a language-* class
     content.querySelectorAll('pre').forEach(function (pre) {
         if (pre.parentElement.classList.contains('code-wrap')) return;
         var wrap = document.createElement('div'), b = document.createElement('button');
@@ -166,6 +176,14 @@
                 setTimeout(function () { b.textContent = label('copy', 'Copy'); b.classList.remove('is-copied'); }, 1600);
             }).catch(function () { announceCopy(false); });
         });
+        var code = pre.querySelector('code');
+        var lang = code && code.className.match(/language-([a-zA-Z0-9_+-]+)/);
+        if (lang) {
+            var badge = document.createElement('span');
+            badge.className = 'code-lang';
+            badge.textContent = lang[1];
+            wrap.appendChild(badge);
+        }
         pre.setAttribute('tabindex', '0');
         pre.parentNode.insertBefore(wrap, pre);
         wrap.appendChild(pre);
