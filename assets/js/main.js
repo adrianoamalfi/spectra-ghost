@@ -22,6 +22,25 @@
         window.matchMedia('(min-width: 48rem)').addEventListener('change', function (e) { if (e.matches) setOpen(false); });
     }
 
+    // Search shortcut: Cmd/Ctrl+K anywhere, or "/" when not typing in a field, opens Ghost's search.
+    var searchBtn = document.querySelector('[data-ghost-search]');
+    if (searchBtn) {
+        document.addEventListener('keydown', function (e) {
+            if (e.defaultPrevented || e.isComposing) return;
+            var mod = e.metaKey || e.ctrlKey;
+            var cmdK = mod && (e.key === 'k' || e.key === 'K');
+            var slash = e.key === '/' && !mod && !e.altKey;
+            if (!cmdK && !slash) return;
+            var t = e.target;
+            var typing = t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable);
+            if (slash && typing) return;
+            e.preventDefault();
+            searchBtn.click();
+        });
+        var kbd = document.querySelector('.search-kbd');
+        if (kbd) kbd.textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl K';
+    }
+
     // Colour scheme switch. The saved choice is applied in <head> before first paint (see default.hbs);
     // here we only wire the buttons. "system" maps to Auto, which follows the OS.
     var schemeKey = 'spectra-scheme';

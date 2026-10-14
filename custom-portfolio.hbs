@@ -1,0 +1,59 @@
+{{!< default}}
+
+{{!-- Template "Portfolio": assign it to any page in Ghost Admin. Shows the page content,
+      then a grid of project posts tagged #portfolio or #project, with their tags as chips. --}}
+{{#post}}
+<article class="{{post_class}} article portfolio-page">
+    <header class="article-header container">
+        {{> breadcrumbs}}
+        <h1 class="article-title">{{title}}</h1>
+        {{#if custom_excerpt}}<p class="article-excerpt">{{custom_excerpt}}</p>{{/if}}
+    </header>
+    {{#if content}}<div class="gh-content" data-table-label="{{t "Scrollable table"}}" data-copy="{{t "Copy"}}" data-copied="{{t "Copied"}}" data-anchor-label="{{t "Copy link to this section"}}" data-zoom-label="{{t "Zoom image"}}" data-close-label="{{t "Close"}}" data-prev-label="{{t "Previous"}}" data-next-label="{{t "Next"}}">{{content}}</div>{{/if}}
+</article>
+{{/post}}
+
+{{#get "posts" filter="tag:portfolio+tag:project" limit="24" order="published_at desc" as |projects|}}
+    {{#if projects}}
+        <section class="container section" aria-labelledby="portfolio-grid">
+            <header class="section-header"><h2 class="section-title" id="portfolio-grid">{{t "Projects"}}</h2></header>
+            <div class="portfolio-grid">
+                {{#foreach projects}}
+                    <article class="card portfolio-card" style="view-transition-name: card-{{id}}">
+                        {{#if feature_image}}
+                            <a class="card-image-link" href="{{url}}" tabindex="-1" aria-hidden="true">
+                                <img
+                                    class="card-image"
+                                    srcset="{{img_url feature_image size="s"}} 320w,
+                                            {{img_url feature_image size="m"}} 640w,
+                                            {{img_url feature_image size="l"}} 960w"
+                                    sizes="(min-width: 48rem) 36rem, 100vw"
+                                    src="{{img_url feature_image size="m"}}"
+                                    alt=""
+                                    width="{{feature_image_width}}" height="{{feature_image_height}}"
+                                    loading="lazy"
+                                    decoding="async"
+                                >
+                            </a>
+                        {{/if}}
+                        <div class="card-body">
+                            <h3 class="card-title" style="view-transition-name: title-{{id}}"><a href="{{url}}">{{title}}</a></h3>
+                            <p class="card-excerpt">{{excerpt words="24"}}</p>
+                            {{#if tags}}
+                                <ul class="tag-list portfolio-tags">
+                                    {{#foreach tags limit="4"}}
+                                        <li><a href="{{url}}">{{name}}</a></li>
+                                    {{/foreach}}
+                                </ul>
+                            {{/if}}
+                        </div>
+                    </article>
+                {{/foreach}}
+            </div>
+        </section>
+    {{else}}
+        <section class="container section">
+            {{> empty-state}}
+        </section>
+    {{/if}}
+{{/get}}

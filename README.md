@@ -32,10 +32,11 @@ Theme page: [adrianoamalfi.com/spectra](https://adrianoamalfi.com/spectra/) · D
 - **Two footers**: **Colophon** (quiet columns) and **Signoff** (a closing tile with the subscribe call).
 - **Bento feed** with tiles that adapt to their own width (container queries and a variable display font), plus Grid and List layouts, infinite scroll and an optional featured slider.
 - **A calm reading experience**: table of contents with scroll-spy, share row, previous and next post, breadcrumbs with structured data, reading progress, heading anchors, code copy buttons, an image lightbox and lazy-loaded comments.
+- **Reader conveniences**: a `⌘K` / `Ctrl+K` (or `/`) shortcut for search, a native share button where the Web Share API is available, a language badge on code blocks, and styled Markdown footnotes with a `:target` highlight.
 - **Two post formats**, selected per post in Ghost: **Essay** gives long-form work a broad editorial opening and optional contents; **Note** keeps short writing close to the reading column.
 - **Colour scheme switch** (system, light, dark) in the header, applied before first paint so there is no flash.
 - **Membership ready**: subscribe section, a call to action for gated posts, a membership page with your tiers, a newsletter archive, donations button and Ghost recommendations.
-- **Page templates**: Landing, Archive, Membership, Newsletter.
+- **Page templates**: Landing, Archive, Membership, Newsletter, Portfolio.
 - **Seven languages**: English, Italian, German, Spanish, French, Portuguese and Dutch.
 - **Smooth navigation**: cross-document View Transitions morph a tile into the article header.
 
@@ -119,6 +120,7 @@ Pick them in the page settings (Template). Each page keeps its title and content
 | **Archive** | The page content, every public topic with its post count, then all posts (grouped by year when JavaScript is available). |
 | **Membership** | The page content, then your paid tiers with monthly and annual Portal sign-up options where available, then the subscribe form. |
 | **Newsletter** | The page content, a subscribe form, then past editions. Tag your sent newsletters with the internal tag `#newsletter`; they list here without appearing as a public tag. |
+| **Portfolio** | The page content, then a grid of project posts tagged `#portfolio` or `#project`, each with its image, excerpt and tags. |
 
 ## Posts
 
@@ -127,7 +129,8 @@ Pick them in the page settings (Template). Each page keeps its title and content
 - **Gated posts** show a single call to action in place of Ghost's default one, worded for free or paid access.
 - **Related posts** come from the primary tag, falling back to the latest posts.
 - **Comments** load only when the reader scrolls near them, keeping that script off the first load.
-- The **share row** offers X, Facebook and a copy-link button: the same accounts Ghost has in Settings, General, Social accounts. With donations enabled it also carries a *Support this site* button.
+- The **share row** offers X, Facebook and a copy-link button: the same accounts Ghost has in Settings, General, Social accounts. On devices that support the Web Share API a native share button appears first, opening the system share sheet. With donations enabled it also carries a *Support this site* button.
+- **Reader conveniences**: search opens with `⌘K` / `Ctrl+K` (or `/` when not typing), code blocks show their language as a small badge, and Markdown footnotes are styled with a quiet hairline and a `:target` highlight when jumped to.
 
 ## Footer and social links
 
@@ -179,7 +182,7 @@ Changes to CSS and JavaScript show after a reload; changes to templates or to `p
 | `default.hbs` | Base layout: head, scheme script, header, footer, scripts |
 | `home.hbs`, `index.hbs` | Home (hero, featured slider, feed, subscribe) and the paginated list |
 | `post.hbs`, `page.hbs` | Post and page |
-| `custom-*.hbs` | Page templates: Landing, Archive, Membership, Newsletter; post templates: Essay, Note |
+| `custom-*.hbs` | Page templates: Landing, Archive, Membership, Newsletter, Portfolio; post templates: Essay, Note |
 | `tag.hbs`, `author.hbs` | Archives |
 | `error.hbs`, `error-404.hbs` | Errors |
 | `partials/hero-*.hbs` | The four heroes and their shared pieces |

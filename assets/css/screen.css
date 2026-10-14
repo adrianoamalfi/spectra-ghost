@@ -218,6 +218,9 @@ a:hover { text-decoration-thickness: 0.14em; }
 
 .site-nav { flex: 1 1 auto; }
 .site-actions { display: flex; align-items: center; gap: var(--space-2); margin-left: auto; }
+/* Search shortcut hint: only where the shortcut works (JS) and there is room (desktop) */
+.search-kbd { display: none; align-items: center; padding: 0.2rem 0.45rem; border: 1px solid var(--color-border); border-radius: 0.4rem; background: var(--color-surface); color: var(--color-muted); font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; line-height: 1; }
+@media (min-width: 48rem) { .js .search-kbd { display: inline-flex; } }
 .site-header .nav-toggle, .site-header .nav-extras { display: none; }
 .nav-toggle span { display: inline-flex; }
 .nav-toggle .nav-toggle-close { display: none; }
@@ -601,6 +604,13 @@ a.meta-author:hover { text-decoration-color: currentColor; }
     background: linear-gradient(to top, oklch(0.14 0.02 270 / 0.9), oklch(0.14 0.02 270 / 0.35) 55%, transparent 80%);
 }
 
+/* Portfolio: a grid of project cards, same tiles as the feed */
+.portfolio-grid { display: grid; gap: var(--gap); grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr)); grid-auto-rows: minmax(16rem, auto); }
+.portfolio-grid .card:nth-child(3n + 2) { --tl: 0.97; --td: 0.21; --tc: 0.015; }
+.portfolio-grid .card:nth-child(3n + 3) { --tl: 0.91; --td: 0.29; --tc: 0.065; }
+.portfolio-tags { margin-top: var(--space-2); }
+.portfolio-tags a { padding: 0.15rem 0.6rem; font-size: 0.75rem; }
+
 /* Archives */
 .archive-header { padding-block: var(--space-7) 0; }
 .archive-title { font-size: var(--text-2xl); letter-spacing: -0.02em; }
@@ -736,6 +746,21 @@ a.meta-author:hover { text-decoration-color: currentColor; }
 .gh-content pre { overflow-x: auto; padding: var(--space-4); border-radius: var(--radius); background: var(--color-surface); line-height: 1.5; }
 .gh-content pre code { padding: 0; background: none; }
 
+/* Markdown footnotes: Ghost renders .footnote-ref in the text and a .footnotes list at the end */
+.gh-content .footnote-ref { line-height: 0; }
+.gh-content .footnote-ref a { font-family: var(--font-mono); font-size: 0.7em; font-weight: 600; vertical-align: super; text-decoration: none; color: var(--accent-ink); }
+.gh-content .footnote-ref a:hover { text-decoration: underline; }
+.gh-content .footnotes { margin: var(--space-6) 0 0; padding: var(--space-4) 0 0; border-top: 1px solid var(--color-border); font-size: var(--text-sm); }
+.gh-content .footnotes li { margin-top: var(--space-2); }
+.gh-content .footnotes li:first-child { margin-top: 0; }
+.gh-content .footnote-backref { display: inline-block; margin-left: 0.4em; padding: 0.1em 0.35em; border-radius: 0.25rem; color: var(--color-muted); text-decoration: none; transition: color 150ms ease, background-color 150ms ease; }
+.gh-content .footnote-backref:hover { color: var(--color-fg); background: var(--color-surface); }
+.gh-content .footnote-backref:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 1px; }
+.gh-content .footnotes li:target, .gh-content .footnote-ref:target { background: color-mix(in oklab, var(--accent) 14%, transparent); border-radius: 0.25rem; }
+.gh-content .footnotes li:target { animation: footnote-flash 1.6s ease; }
+@keyframes footnote-flash { 0% { background: color-mix(in oklab, var(--accent) 26%, transparent); } 100% { background: color-mix(in oklab, var(--accent) 14%, transparent); } }
+@media (prefers-reduced-motion: reduce) { .gh-content .footnotes li:target { animation: none; } }
+
 .gh-content table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
 .gh-content th, .gh-content td { padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--color-border); text-align: left; }
 
@@ -864,6 +889,8 @@ a.meta-author:hover { text-decoration-color: currentColor; }
 .heading-anchor.is-copied { color: var(--accent-ink); }
 
 .code-wrap { position: relative; }
+.code-lang { position: absolute; top: 0.55rem; left: 0.8rem; z-index: 2; font-family: var(--font-mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-muted); }
+.code-wrap:has(.code-lang) pre { padding-top: 2.4rem; }
 .code-copy { position: absolute; top: 0.5rem; right: 0.5rem; padding: 0.25rem 0.7rem; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-bg); color: var(--color-fg); font: inherit; font-size: 0.75rem; font-weight: 600; cursor: pointer; opacity: 0; transition: opacity 150ms ease; }
 .code-wrap:hover .code-copy, .code-copy:focus-visible, .code-copy.is-copied { opacity: 1; }
 @media (hover: none) { .code-copy { opacity: 1; } }

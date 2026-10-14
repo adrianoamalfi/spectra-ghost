@@ -1,6 +1,7 @@
 {{!-- Share row. Context: a post. Only networks that Ghost itself has as social accounts (X, Facebook) plus a copy button. --}}
 <div class="share">
     <span class="share-label">{{t "Share"}}</span>
+    <button class="icon-button share-native" type="button" data-web-share hidden aria-label="{{t "Share"}}" title="{{t "Share"}}">{{> "icons/share"}}</button>
     <a class="icon-button" href="https://twitter.com/intent/tweet?url={{url absolute="true"}}" target="_blank" rel="noopener noreferrer" aria-label="{{t "Share on X"}}" title="{{t "Share on X"}}">{{> "icons/x"}}</a>
     <a class="icon-button" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" target="_blank" rel="noopener noreferrer" aria-label="{{t "Share on Facebook"}}" title="{{t "Share on Facebook"}}">{{> "icons/facebook"}}</a>
     <button class="icon-button share-copy" type="button" data-share-url="{{url absolute="true"}}" data-copied-label="{{t "Copied"}}" aria-label="{{t "Copy link"}}" title="{{t "Copy link"}}">{{> "icons/link"}}</button>
