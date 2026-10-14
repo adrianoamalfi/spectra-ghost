@@ -4,6 +4,11 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-10-14
+
+### Changed
+- Bumped `actions/setup-node` to 7.1.0 and `actions/upload-artifact` to 7.0.2 in the CI and Release workflows.
+
 ## [0.3.1] - 2026-10-09
 
 ### Added
