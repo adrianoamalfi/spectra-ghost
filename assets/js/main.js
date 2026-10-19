@@ -38,7 +38,7 @@
             searchBtn.click();
         });
         var kbd = document.querySelector('.search-kbd');
-        if (kbd) kbd.textContent = /Mac|iPhone|iPad/.test(navigator.platform) ? '⌘K' : 'Ctrl K';
+        if (kbd) kbd.textContent = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'Ctrl K';
     }
 
     // Colour scheme switch. The saved choice is applied in <head> before first paint (see default.hbs);
@@ -88,7 +88,7 @@
         var sentinel = document.createElement('div');
         sentinel.setAttribute('aria-hidden', 'true');
         pager.parentNode.insertBefore(sentinel, pager);
-        var io = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) more(); }, { rootMargin: '600px 0px' });
+        var io = new IntersectionObserver(function (entries) { if (entries[0].isIntersecting) more(); }, { rootMargin: '500px 0px' });
         var more = function () {
             var next = pager.querySelector('a[rel="next"]');
             if (!next) { io.disconnect(); return; }

@@ -64,6 +64,7 @@
     "Sign in": "Iniciar sesión",
     "Nothing here yet": "Todavía no hay nada aquí",
     "There are no posts to show right now. Check back soon.": "Ahora mismo no hay publicaciones. Vuelve pronto.",
+    "There are no posts for {name} right now. Check back soon.": "Ahora mismo no hay publicaciones para {name}. Vuelve pronto.",
     "Get the best posts, straight to your inbox": "Las mejores publicaciones, directo a tu bandeja de entrada",
     "No spam. Unsubscribe at any time.": "Sin spam. Cancela cuando quieras.",
     "Your email address": "Tu correo electrónico",

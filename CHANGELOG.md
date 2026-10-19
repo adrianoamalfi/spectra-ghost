@@ -4,6 +4,39 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-10-19
+
+A quiet release: no new features, just the small fixes that make the existing
+ones feel more correct, plus a unit test suite so the next one is caught
+before it ships.
+
+### Added
+- A **unit test suite** (`test/templates.test.js`, run with `npm run test:unit`
+ and now part of `npm run check`): every template renders without invoking a
+ helper with a bad argument, no helper call hides inside a CSS or JS comment,
+ the footer recommendations partial keeps each site's full URL and escapes its
+ attributes and text, and the v0.4.1 refinements below are each pinned by a
+ regression test.
+
+### Changed
+- The footer's "Recommended sites" heading now uses the shared `.section-title`
+ treatment instead of an all-caps eyebrow. The eyebrow was a DESIGN.md
+ violation (eyebrows are rationed to the hero and one per article) and the
+ only section title in the theme that did not follow the shared pattern.
+- Infinite scroll now prefetches the next page 500px ahead instead of 600px, so
+ readers who stop early trigger fewer requests with no visible change for those
+ who scroll on.
+
+### Fixed
+- The search shortcut hint no longer reads the deprecated `navigator.platform`
+ to decide between `⌘K` and `Ctrl K`; it reads the user agent instead.
+- An empty tag or author archive now names the tag or author ("There are no
+ posts for {name} right now.") instead of the generic "no posts" line, which
+ read oddly on a page that was clearly about a specific topic or person. The
+ new string is translated in all seven locales.
+- The lightbox now closes on `Escape` through an explicit branch as well as the
+ native `<dialog>` handler, so the behaviour is identical in every environment.
+
 ## [0.4.0] - 2026-10-14
 
 ### Added

@@ -1,6 +1,6 @@
 <div class="empty">
     <span class="empty-icon" aria-hidden="true">{{> "icons/search"}}</span>
     <p class="empty-title">{{t "Nothing here yet"}}</p>
-    <p class="empty-text">{{t "There are no posts to show right now. Check back soon."}}</p>
+    <p class="empty-text">{{#if name}}{{t "There are no posts for {name} right now. Check back soon." name=name}}{{else}}{{t "There are no posts to show right now. Check back soon."}}{{/if}}</p>
     <a class="button button-ghost" href="{{@site.url}}">{{t "Back to home"}}</a>
 </div>
