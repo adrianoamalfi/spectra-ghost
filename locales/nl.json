@@ -64,6 +64,7 @@
     "Sign in": "Inloggen",
     "Nothing here yet": "Hier is nog niets",
     "There are no posts to show right now. Check back soon.": "Er zijn nu geen berichten. Kom snel terug.",
+    "There are no posts for {name} right now. Check back soon.": "Er zijn nu geen berichten voor {name}. Kom snel terug.",
     "Get the best posts, straight to your inbox": "De beste berichten rechtstreeks in je inbox",
     "No spam. Unsubscribe at any time.": "Geen spam. Altijd opzegbaar.",
     "Your email address": "Je e-mailadres",

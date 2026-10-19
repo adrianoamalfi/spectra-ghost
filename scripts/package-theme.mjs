@@ -26,6 +26,7 @@ archive.glob('**/*', {
         'node_modules/**',
         'docs/**',
         'scripts/**',
+        'test/**',
         '*.md',
         '**/*.md',
         '*.zip',
