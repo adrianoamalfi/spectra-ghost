@@ -82,7 +82,7 @@
             tpl = null;
         };
         if (location.hash.indexOf('#ghost-comments') === 0 || !('IntersectionObserver' in window)) inject();
-        else new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { inject(); o.disconnect(); } }, { rootMargin: '600px 0px' }).observe(host);
+        else new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { inject(); o.disconnect(); } }, { rootMargin: '500px 0px' }).observe(host);
     }
 
     // Reading progress: only where CSS scroll-driven animations are missing
@@ -230,6 +230,9 @@
         dlg.querySelector('.lightbox-next').addEventListener('click', function () { show(idx + 1); });
         dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
         dlg.addEventListener('keydown', function (e) {
+            // Escape closes through an explicit branch as well as the native
+            // <dialog> handler, so the behaviour is identical in every environment.
+            if (e.key === 'Escape') { dlg.close(); return; }
             if (!many) return;
             if (e.key === 'ArrowLeft') show(idx - 1);
             if (e.key === 'ArrowRight') show(idx + 1);

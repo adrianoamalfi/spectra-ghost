@@ -64,6 +64,7 @@
     "Sign in": "Se connecter",
     "Nothing here yet": "Rien ici pour l'instant",
     "There are no posts to show right now. Check back soon.": "Il n'y a aucun article pour le moment. Revenez bientôt.",
+    "There are no posts for {name} right now. Check back soon.": "Il n'y a aucun article pour {name} pour le moment. Revenez bientôt.",
     "Get the best posts, straight to your inbox": "Les meilleurs articles, directement dans votre boîte mail",
     "No spam. Unsubscribe at any time.": "Pas de spam. Désabonnement à tout moment.",
     "Your email address": "Votre adresse e-mail",
