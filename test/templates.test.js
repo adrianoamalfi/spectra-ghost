@@ -281,3 +281,59 @@ describe('v0.4.1 reader & a11y refinements', () => {
     expect(generic).toContain('There are no posts to show right now. Check back soon.');
   });
 });
+
+describe('empty archive wiring', () => {
+  const site = { '@site': { url: 'https://example.com', title: 'Spectra Test' } };
+
+  function makeArchiveHandlebars() {
+    const hbs = Handlebars.create();
+    hbs.registerHelper('t', (key, options) => {
+      const name = options && options.hash ? options.hash.name : undefined;
+      return String(key).replace('{name}', name != null ? name : '');
+    });
+    hbs.registerHelper('plural', () => '');
+    hbs.registerHelper('pagination', () => '');
+    hbs.registerHelper('match', function (...args) {
+      return args[args.length - 1].fn(this);
+    });
+    hbs.registerHelper('is', function (value, options) {
+      return options.inverse(this);
+    });
+    hbs.registerHelper('has', function (value, options) {
+      return options.inverse(this);
+    });
+    hbs.registerHelper('foreach', hbs.helpers.each);
+    hbs.registerHelper('date', () => '');
+    hbs.registerHelper('img_url', () => '');
+    for (const name of ['empty-state', 'post-feed', 'breadcrumbs', 'icons/search']) {
+      hbs.registerPartial(name, readFileSync(`partials/${name}.hbs`, 'utf8'));
+    }
+    hbs.registerPartial('post-card', '');
+    return hbs;
+  }
+
+  function emptyText(file, context) {
+    const hbs = makeArchiveHandlebars();
+    const html = hbs.compile(readFileSync(file, 'utf8'))({
+      ...site,
+      ...context,
+      posts: [],
+      pagination: { page: 1 },
+    });
+    return html.match(/<p class="empty-text">([\s\S]*?)<\/p>/)?.[1]?.trim() ?? '';
+  }
+
+  // Regression guard: empty-state receives the tag/author name through
+  // post-feed, which is rendered outside the {{#tag}}/{{#author}} scope.
+  it('tag.hbs names the tag when its archive has no posts', () => {
+    expect(emptyText('tag.hbs', { tag: { name: 'Design' } })).toContain(
+      'There are no posts for Design right now. Check back soon.',
+    );
+  });
+
+  it('author.hbs names the author when their archive has no posts', () => {
+    expect(emptyText('author.hbs', { author: { name: 'Ada' } })).toContain(
+      'There are no posts for Ada right now. Check back soon.',
+    );
+  });
+});
